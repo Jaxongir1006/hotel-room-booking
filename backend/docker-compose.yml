@@ -21,8 +21,16 @@ services:
       - DB_DATABASE=hotel_booking
       - DB_USERNAME=hotel
       - DB_PASSWORD=secret
+      - REDIS_CLIENT=predis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CACHE_STORE=redis
+      - QUEUE_CONNECTION=redis
+      - SESSION_DRIVER=redis
     depends_on:
       mysql:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - hotel_network
@@ -60,9 +68,33 @@ services:
       - DB_DATABASE=hotel_booking
       - DB_USERNAME=hotel
       - DB_PASSWORD=secret
+      - REDIS_CLIENT=predis
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - CACHE_STORE=redis
+      - QUEUE_CONNECTION=redis
+      - SESSION_DRIVER=redis
     depends_on:
       mysql:
         condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - hotel_network
+
+  redis:
+    image: redis:7-alpine
+    container_name: hotel_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
     networks:
       - hotel_network
 
@@ -89,6 +121,7 @@ services:
 
 volumes:
   mysql_data:
+  redis_data:
 
 networks:
   hotel_network:

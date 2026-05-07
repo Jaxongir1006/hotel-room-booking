@@ -1,0 +1,21 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+use Illuminate\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    public function run(): void
+    {
+        User::factory()
+            ->admin()
+            ->create([
+                'name' => 'Hotel Administrator',
+                'email' => 'admin@hotel.com',
+            ]);
+
+        User::factory()->count(10)->create();
+    }
+}
