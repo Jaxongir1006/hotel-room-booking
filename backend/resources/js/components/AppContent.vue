@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 import { SidebarInset } from '@/components/ui/sidebar';
 import type { AppVariant } from '@/types';
 
@@ -12,11 +13,17 @@ const props = withDefaults(defineProps<Props>(), {
     variant: 'sidebar',
 });
 const className = computed(() => props.class);
+
+// Re-key on URL so every Inertia navigation re-triggers the fade animation.
+const page = usePage();
+const navKey = computed(() => page.url);
 </script>
 
 <template>
     <SidebarInset v-if="props.variant === 'sidebar'" :class="className">
-        <slot />
+        <div :key="navKey" class="animate-fade-in">
+            <slot />
+        </div>
     </SidebarInset>
     <main
         v-else

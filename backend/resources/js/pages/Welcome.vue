@@ -36,33 +36,40 @@ const testimonials = [
     <GuestLayout>
         <section class="relative overflow-hidden bg-[#1a2744] text-white">
             <div
+                aria-hidden="true"
                 class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2000&q=80')] bg-cover bg-center opacity-30"
+                style="animation: aurelia-fade-in 1200ms ease-out both;"
             />
             <div
+                aria-hidden="true"
                 class="absolute inset-0 bg-gradient-to-b from-[#1a2744]/60 via-[#1a2744]/70 to-[#1a2744]"
             />
+            <div
+                aria-hidden="true"
+                class="pointer-events-none absolute -right-32 top-1/4 size-96 rounded-full bg-[#c9a84c]/15 blur-3xl"
+            />
             <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-40">
-                <p class="text-xs font-semibold uppercase tracking-[0.4em] text-[#c9a84c]">
+                <p class="animate-fade-up text-xs font-semibold uppercase tracking-[0.4em] text-[#c9a84c]">
                     Aurelia Stay
                 </p>
-                <h1 class="mt-4 max-w-3xl font-serif text-5xl leading-tight md:text-6xl">
+                <h1 class="animate-fade-up-delayed-1 mt-4 max-w-3xl font-serif text-5xl leading-tight md:text-6xl">
                     A retreat where every detail is curated for you.
                 </h1>
-                <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80">
+                <p class="animate-fade-up-delayed-2 mt-6 max-w-xl text-base leading-relaxed text-white/80">
                     Discover thoughtfully designed suites, anticipatory service, and
                     the kind of quiet luxury that lingers long after check-out.
                 </p>
-                <div class="mt-10 flex flex-wrap items-center gap-4">
+                <div class="animate-fade-up-delayed-3 mt-10 flex flex-wrap items-center gap-4">
                     <Link
                         :href="roomsIndex().url"
-                        class="inline-flex items-center gap-2 rounded-md bg-[#c9a84c] px-6 py-3 text-sm font-medium text-[#1a2744] transition hover:bg-[#dab867]"
+                        class="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#c9a84c] px-6 py-3 text-sm font-medium text-[#1a2744] shadow-lg shadow-[#c9a84c]/20 transition-colors duration-200 hover:bg-[#dab867]"
                     >
                         Browse rooms
-                        <ArrowRight class="size-4" />
+                        <ArrowRight class="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                     </Link>
                     <a
                         href="#featured"
-                        class="text-sm uppercase tracking-widest text-white/70 transition hover:text-[#c9a84c]"
+                        class="cursor-pointer text-sm uppercase tracking-widest text-white/70 transition-colors duration-200 hover:text-[#c9a84c]"
                     >
                         Discover the experience ↓
                     </a>
@@ -72,9 +79,9 @@ const testimonials = [
 
         <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
             <div class="grid gap-8 md:grid-cols-3">
-                <div class="text-center">
+                <div class="group cursor-default text-center">
                     <div
-                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c]"
+                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3"
                     >
                         <Sparkles class="size-5" />
                     </div>
@@ -83,9 +90,9 @@ const testimonials = [
                         Twenty rooms across four collections, each with its own character.
                     </p>
                 </div>
-                <div class="text-center">
+                <div class="group cursor-default text-center">
                     <div
-                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c]"
+                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3"
                     >
                         <ShieldCheck class="size-5" />
                     </div>
@@ -94,9 +101,9 @@ const testimonials = [
                         Free cancellation on pending reservations. No hidden charges.
                     </p>
                 </div>
-                <div class="text-center">
+                <div class="group cursor-default text-center">
                     <div
-                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c]"
+                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3"
                     >
                         <Wifi class="size-5" />
                     </div>
@@ -131,11 +138,13 @@ const testimonials = [
                     v-if="featuredRooms.data.length"
                     class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
                 >
-                    <RoomCard
-                        v-for="room in featuredRooms.data"
+                    <div
+                        v-for="(room, idx) in featuredRooms.data"
                         :key="room.id"
-                        :room="room"
-                    />
+                        :style="`animation: aurelia-fade-up 540ms cubic-bezier(0.22, 1, 0.36, 1) ${60 * idx}ms both;`"
+                    >
+                        <RoomCard :room="room" />
+                    </div>
                 </div>
                 <p v-else class="mt-10 text-sm text-slate-500">
                     No featured rooms yet. Please check back soon.

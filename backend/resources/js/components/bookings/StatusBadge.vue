@@ -9,10 +9,10 @@ const props = defineProps<{
 
 const classes = computed(() => {
     const map: Record<BookingStatus, string> = {
-        pending: 'bg-amber-50 text-amber-700 ring-amber-200',
-        confirmed: 'bg-emerald-50 text-emerald-700 ring-emerald-200',
-        cancelled: 'bg-rose-50 text-rose-700 ring-rose-200',
-        completed: 'bg-sky-50 text-sky-700 ring-sky-200',
+        pending: 'bg-amber-50 text-amber-800 ring-amber-200 [--dot:theme(colors.amber.500)]',
+        confirmed: 'bg-emerald-50 text-emerald-800 ring-emerald-200 [--dot:theme(colors.emerald.500)]',
+        cancelled: 'bg-rose-50 text-rose-800 ring-rose-200 [--dot:theme(colors.rose.500)]',
+        completed: 'bg-sky-50 text-sky-800 ring-sky-200 [--dot:theme(colors.sky.500)]',
     };
     return map[props.status];
 });
@@ -22,9 +22,14 @@ const text = computed(() => props.label ?? props.status.charAt(0).toUpperCase() 
 
 <template>
     <span
-        class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset"
+        class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wide ring-1 ring-inset"
         :class="classes"
     >
+        <span
+            aria-hidden="true"
+            class="size-1.5 rounded-full"
+            style="background-color: var(--dot)"
+        />
         {{ text }}
     </span>
 </template>

@@ -149,7 +149,7 @@ const formatPrice = (price: number) =>
                         <div v-if="isAuthenticated" class="mt-5">
                             <Link
                                 :href="bookingCreate({ query: { room: room.slug } }).url"
-                                class="block rounded-md bg-[#1a2744] px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-[#243558]"
+                                class="block cursor-pointer rounded-md bg-[#1a2744] px-4 py-3 text-center text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-[#243558]"
                             >
                                 Reserve this room
                             </Link>
@@ -157,13 +157,13 @@ const formatPrice = (price: number) =>
                         <div v-else class="mt-5 space-y-2">
                             <Link
                                 :href="login().url"
-                                class="block rounded-md bg-[#1a2744] px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-[#243558]"
+                                class="block cursor-pointer rounded-md bg-[#1a2744] px-4 py-3 text-center text-sm font-medium text-white transition-colors duration-200 hover:bg-[#243558]"
                             >
                                 Sign in to reserve
                             </Link>
                             <Link
                                 :href="register().url"
-                                class="block rounded-md border border-slate-200 px-4 py-3 text-center text-sm text-slate-600 transition hover:border-[#c9a84c] hover:text-[#1a2744]"
+                                class="block cursor-pointer rounded-md border border-slate-200 px-4 py-3 text-center text-sm text-slate-600 transition-colors duration-200 hover:border-[#c9a84c] hover:text-[#1a2744]"
                             >
                                 Create an account
                             </Link>

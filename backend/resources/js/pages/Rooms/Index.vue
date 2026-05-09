@@ -73,7 +73,7 @@ watch(
 
     <GuestLayout>
         <section class="border-b border-slate-200 bg-white">
-            <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="animate-fade-up mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                 <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
                     Our rooms
                 </p>
@@ -86,7 +86,7 @@ watch(
             </div>
         </section>
 
-        <div class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
+        <div class="animate-fade-up-delayed-1 mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
             <!-- Filters sidebar -->
             <aside class="space-y-6">
                 <div class="rounded-xl border border-slate-200 bg-white p-5">
@@ -214,21 +214,29 @@ watch(
                     v-if="rooms.data.length"
                     class="mt-6 grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
                 >
-                    <RoomCard v-for="room in rooms.data" :key="room.id" :room="room" />
+                    <div
+                        v-for="(room, idx) in rooms.data"
+                        :key="room.id"
+                        :style="`animation: aurelia-fade-up 520ms cubic-bezier(0.22, 1, 0.36, 1) ${30 * idx}ms both;`"
+                    >
+                        <RoomCard :room="room" />
+                    </div>
                 </div>
 
                 <div
                     v-else
-                    class="mt-12 rounded-xl border border-dashed border-slate-200 bg-white p-12 text-center"
+                    class="animate-fade-up mt-12 rounded-2xl border border-dashed border-[#c9a84c]/40 bg-gradient-to-br from-[#fdf8ec] to-white p-12 text-center"
                 >
-                    <p class="font-serif text-lg text-[#1a2744]">No rooms match those filters.</p>
+                    <p class="font-serif text-xl text-[#1a2744]">
+                        No rooms match those filters.
+                    </p>
                     <p class="mt-2 text-sm text-slate-500">
                         Try widening your range or clearing some criteria.
                     </p>
                     <button
                         type="button"
                         @click="reset"
-                        class="mt-6 rounded-md bg-[#1a2744] px-5 py-2 text-sm font-medium text-white transition hover:bg-[#243558]"
+                        class="group mt-6 inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#1a2744] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#1a2744]/10 transition-colors duration-200 hover:bg-[#243558]"
                     >
                         Reset filters
                     </button>
@@ -239,7 +247,7 @@ watch(
                     v-if="rooms.meta.last_page > 1"
                     class="mt-10 flex flex-wrap items-center justify-center gap-1"
                 >
-                    <template v-for="link in rooms.links" :key="link.label">
+                    <template v-for="link in rooms.meta.links" :key="link.label">
                         <Link
                             v-if="link.url"
                             :href="link.url"

@@ -42,6 +42,10 @@ class BookingResource extends JsonResource
                 'name' => $this->user->name,
                 'email' => $this->user->email,
             ]),
+            'review' => $this->whenLoaded(
+                'review',
+                fn () => $this->review ? new ReviewResource($this->review) : null
+            ),
         ];
     }
 }

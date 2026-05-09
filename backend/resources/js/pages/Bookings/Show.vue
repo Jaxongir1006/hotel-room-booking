@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { ArrowLeft, CalendarDays, Loader2, MessageSquare } from 'lucide-vue-next';
+import { ArrowLeft, CalendarDays, Loader2, MessageSquare, Star } from 'lucide-vue-next';
 import StatusBadge from '@/components/bookings/StatusBadge.vue';
+import ReviewForm from '@/components/bookings/ReviewForm.vue';
 import { dashboard } from '@/routes';
 import { index as roomsIndex, show as roomShow } from '@/routes/rooms';
 import {
@@ -149,6 +150,51 @@ const formatDate = (iso: string) =>
                 </button>
             </div>
         </div>
+
+        <section class="mt-6">
+            <div
+                v-if="booking.review"
+                class="rounded-xl border border-slate-200 bg-white p-6"
+            >
+                <header>
+                    <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                        Your review
+                    </p>
+                    <div class="mt-1 flex items-center gap-2">
+                        <Star
+                            v-for="i in 5"
+                            :key="i"
+                            class="size-4"
+                            :class="
+                                i <= booking.review.rating
+                                    ? 'fill-[#c9a84c] text-[#c9a84c]'
+                                    : 'text-slate-200'
+                            "
+                        />
+                        <span class="text-sm text-slate-500">
+                            {{ booking.review.rating }} / 5
+                        </span>
+                    </div>
+                </header>
+                <p
+                    v-if="booking.review.comment"
+                    class="mt-3 whitespace-pre-line text-sm leading-relaxed text-slate-600"
+                >
+                    {{ booking.review.comment }}
+                </p>
+                <p
+                    v-else
+                    class="mt-3 text-sm italic text-slate-400"
+                >
+                    No comment shared.
+                </p>
+            </div>
+
+            <ReviewForm
+                v-else-if="booking.can_be_reviewed"
+                :booking-reference="booking.reference"
+            />
+        </section>
 
         <p class="mt-4 text-xs text-slate-400">
             Need to make a change? <Link :href="roomsIndex().url" class="underline-offset-2 hover:underline">Browse other rooms</Link>

@@ -82,37 +82,62 @@ class RoomRepository
     {
         $key = 'rooms:featured:'.$limit;
 
-        /** @var EloquentCollection<int, Room> $result */
-        $result = Cache::tags([self::TAG_LIST])->remember($key, self::TTL_LIST, function () use ($limit) {
+        /** @var array<int, int> $ids */
+        $ids = Cache::tags([self::TAG_LIST])->remember($key, self::TTL_LIST, function () use ($limit) {
             return Room::query()
-                ->with('amenities')
                 ->withCount('reviews')
                 ->withAvg('reviews', 'rating')
                 ->where('status', RoomStatus::Available)
                 ->orderByDesc('reviews_avg_rating')
                 ->orderByDesc('reviews_count')
                 ->limit($limit)
-                ->get();
+                ->pluck('id')
+                ->all();
         });
+
+        if (empty($ids)) {
+            return new EloquentCollection;
+        }
+
+        $loaded = Room::query()
+            ->with('amenities')
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
+            ->whereIn('id', $ids)
+            ->get()
+            ->keyBy('id');
+
+        /** @var EloquentCollection<int, Room> $result */
+        $result = new EloquentCollection(
+            array_values(array_filter(array_map(
+                fn (int $id) => $loaded->get($id),
+                $ids
+            )))
+        );
 
         return $result;
     }
 
     public function findBySlug(string $slug): ?Room
     {
-        $key = "rooms:show:{$slug}";
+        $key = "rooms:show:id:{$slug}";
 
-        /** @var Room|null $room */
-        $room = Cache::tags([self::TAG_SHOW])->remember($key, self::TTL_SHOW, function () use ($slug) {
-            return Room::query()
-                ->with(['amenities', 'reviews' => function ($q) {
-                    $q->latest()->limit(20)->with('user:id,name');
-                }])
-                ->withCount('reviews')
-                ->withAvg('reviews', 'rating')
-                ->where('slug', $slug)
-                ->first();
+        /** @var int|null $id */
+        $id = Cache::tags([self::TAG_SHOW])->remember($key, self::TTL_SHOW, function () use ($slug) {
+            return Room::query()->where('slug', $slug)->value('id');
         });
+
+        if ($id === null) {
+            return null;
+        }
+
+        $room = Room::query()
+            ->with(['amenities', 'reviews' => function ($q) {
+                $q->latest()->limit(20)->with('user:id,name');
+            }])
+            ->withCount('reviews')
+            ->withAvg('reviews', 'rating')
+            ->find($id);
 
         if ($room !== null) {
             $room->setAttribute('unavailable_dates', $this->unavailableDates($room->id));

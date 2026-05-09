@@ -79,7 +79,7 @@ const submit = () => {
     <form @submit.prevent="submit" class="space-y-5">
         <div class="grid grid-cols-2 gap-3">
             <label class="block">
-                <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
                     Check-in
                 </span>
                 <input
@@ -87,11 +87,11 @@ const submit = () => {
                     type="date"
                     :min="minCheckIn"
                     required
-                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="mt-1.5 w-full rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:outline-none focus:ring-2 focus:ring-[#c9a84c]/40"
                 />
             </label>
             <label class="block">
-                <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
                     Check-out
                 </span>
                 <input
@@ -99,20 +99,29 @@ const submit = () => {
                     type="date"
                     :min="minCheckOut"
                     required
-                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="mt-1.5 w-full rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:outline-none focus:ring-2 focus:ring-[#c9a84c]/40"
                 />
             </label>
         </div>
 
-        <p
-            v-if="overlapsUnavailable"
-            class="rounded-md bg-rose-50 px-3 py-2 text-xs text-rose-700"
+        <Transition
+            enter-active-class="transition-all duration-200 ease-out"
+            enter-from-class="opacity-0 -translate-y-1"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition-all duration-150 ease-in"
+            leave-from-class="opacity-100"
+            leave-to-class="opacity-0"
         >
-            Some dates in your range are already reserved. Please pick a different window.
-        </p>
+            <p
+                v-if="overlapsUnavailable"
+                class="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700"
+            >
+                Some dates in your range are already reserved. Please pick a different window.
+            </p>
+        </Transition>
 
         <label class="block">
-            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+            <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
                 Notes for the concierge (optional)
             </span>
             <textarea
@@ -120,48 +129,47 @@ const submit = () => {
                 rows="3"
                 maxlength="500"
                 placeholder="Special requests, arrival time…"
-                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="mt-1.5 w-full resize-none rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:outline-none focus:ring-2 focus:ring-[#c9a84c]/40"
             />
         </label>
 
-        <div class="rounded-lg bg-slate-50 p-4 text-sm">
+        <div
+            class="rounded-xl border border-[#c9a84c]/30 bg-gradient-to-br from-[#fdf8ec] to-[#f8f1dc] p-5 text-sm"
+        >
             <div class="flex items-center justify-between text-slate-600">
                 <span class="flex items-center gap-2">
-                    <CalendarRange class="size-4 text-slate-400" />
+                    <CalendarRange class="size-4 text-[#8a6d20]" />
                     {{ formatPrice(pricePerNight) }} × {{ nights }} {{ nights === 1 ? 'night' : 'nights' }}
                 </span>
-                <span>{{ formatPrice(total) }}</span>
+                <span class="font-medium text-slate-700">{{ formatPrice(total) }}</span>
             </div>
-            <div class="mt-3 flex items-center justify-between border-t border-slate-200 pt-3 text-base font-medium text-[#1a2744]">
+            <div
+                class="mt-3 flex items-center justify-between border-t border-[#c9a84c]/30 pt-3 text-base font-medium text-[#1a2744]"
+            >
                 <span>Total</span>
-                <span class="font-serif text-lg">{{ formatPrice(total) }}</span>
+                <span class="font-serif text-xl">{{ formatPrice(total) }}</span>
             </div>
         </div>
 
-        <p
-            v-if="form.errors.room_slug"
-            class="text-sm text-rose-600"
-        >
+        <p v-if="form.errors.room_slug" class="text-sm text-rose-600">
             {{ form.errors.room_slug }}
         </p>
-        <p
-            v-if="form.errors.check_in"
-            class="text-sm text-rose-600"
-        >
+        <p v-if="form.errors.check_in" class="text-sm text-rose-600">
             {{ form.errors.check_in }}
         </p>
-        <p
-            v-if="form.errors.check_out"
-            class="text-sm text-rose-600"
-        >
+        <p v-if="form.errors.check_out" class="text-sm text-rose-600">
             {{ form.errors.check_out }}
         </p>
 
         <button
             type="submit"
             :disabled="form.processing || nights === 0 || overlapsUnavailable"
-            class="flex w-full items-center justify-center gap-2 rounded-md bg-[#1a2744] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#243558] disabled:cursor-not-allowed disabled:opacity-50"
+            class="group relative flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-md bg-[#1a2744] px-4 py-3 text-sm font-medium text-white shadow-md shadow-[#1a2744]/10 transition-colors duration-200 hover:bg-[#243558] disabled:cursor-not-allowed disabled:opacity-50"
         >
+            <span
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-y-0 -left-12 w-12 -skew-x-12 bg-white/10 opacity-0 transition-all duration-700 group-hover:left-full group-hover:opacity-100"
+            />
             <Loader2 v-if="form.processing" class="size-4 animate-spin" />
             Reserve · {{ formatPrice(total) }}
         </button>

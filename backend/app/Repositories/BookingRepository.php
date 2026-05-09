@@ -24,7 +24,7 @@ class BookingRepository
     public function findByReference(string $reference): ?Booking
     {
         return Booking::query()
-            ->with(['room.amenities', 'user'])
+            ->with(['room.amenities', 'user', 'review.user:id,name'])
             ->where('reference', $reference)
             ->first();
     }

@@ -17,7 +17,7 @@ const formatPrice = (price: number) =>
 <template>
     <Link
         :href="roomShow({ slug: room.slug }).url"
-        class="group block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-[#c9a84c]/40 hover:shadow-xl"
+        class="group block cursor-pointer overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a84c]/50 hover:shadow-xl"
     >
         <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
             <img

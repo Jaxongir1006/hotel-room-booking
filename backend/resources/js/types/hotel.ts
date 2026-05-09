@@ -76,11 +76,23 @@ export type Booking = {
     can_be_reviewed: boolean;
     room?: BookingRoomSummary;
     user?: { id: number; name: string; email: string };
+    review?: RoomReview | null;
+};
+
+export type PaginationLink = {
+    url: string | null;
+    label: string;
+    active: boolean;
 };
 
 export type Paginated<T> = {
     data: T[];
-    links: { url: string | null; label: string; active: boolean }[];
+    links: {
+        first: string | null;
+        last: string | null;
+        prev: string | null;
+        next: string | null;
+    };
     meta: {
         current_page: number;
         last_page: number;
@@ -88,5 +100,27 @@ export type Paginated<T> = {
         total: number;
         from: number | null;
         to: number | null;
+        links: PaginationLink[];
     };
+};
+
+/**
+ * Shape returned by Laravel's LengthAwarePaginator when serialized
+ * directly (without an Eloquent JsonResource collection). Pagination
+ * fields live at the root, not under `meta`.
+ */
+export type FlatPaginated<T> = {
+    data: T[];
+    current_page: number;
+    last_page: number;
+    per_page: number;
+    total: number;
+    from: number | null;
+    to: number | null;
+    links: PaginationLink[];
+    first_page_url: string | null;
+    last_page_url: string | null;
+    next_page_url: string | null;
+    prev_page_url: string | null;
+    path: string;
 };
