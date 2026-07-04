@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { ArrowLeft, CalendarDays, Loader2, MessageSquare, Star } from 'lucide-vue-next';
+import {
+    ArrowLeft,
+    CalendarDays,
+    Loader2,
+    MessageSquare,
+    Star,
+} from 'lucide-vue-next';
 import StatusBadge from '@/components/bookings/StatusBadge.vue';
 import ReviewForm from '@/components/bookings/ReviewForm.vue';
 import { dashboard } from '@/routes';
@@ -72,14 +78,19 @@ const formatDate = (iso: string) =>
         <div class="mt-6 rounded-xl border border-slate-200 bg-white p-8">
             <div class="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                    <p
+                        class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                    >
                         Reservation
                     </p>
                     <h1 class="mt-1 font-serif text-2xl text-[#1a2744]">
                         {{ booking.reference }}
                     </h1>
                 </div>
-                <StatusBadge :status="booking.status" :label="booking.status_label" />
+                <StatusBadge
+                    :status="booking.status"
+                    :label="booking.status_label"
+                />
             </div>
 
             <div class="mt-8 grid gap-6 sm:grid-cols-2">
@@ -91,7 +102,11 @@ const formatDate = (iso: string) =>
                         class="size-20 rounded-lg object-cover"
                     />
                     <div>
-                        <p class="text-xs uppercase tracking-wider text-slate-400">Room</p>
+                        <p
+                            class="text-xs tracking-wider text-slate-400 uppercase"
+                        >
+                            Room
+                        </p>
                         <Link
                             v-if="booking.room"
                             :href="roomShow({ slug: booking.room.slug }).url"
@@ -99,22 +114,31 @@ const formatDate = (iso: string) =>
                         >
                             {{ booking.room.name }}
                         </Link>
-                        <p class="text-xs text-slate-400">{{ booking.room?.type_label }}</p>
+                        <p class="text-xs text-slate-400">
+                            {{ booking.room?.type_label }}
+                        </p>
                     </div>
                 </div>
 
                 <div>
-                    <p class="text-xs uppercase tracking-wider text-slate-400">Stay</p>
-                    <p class="mt-1 flex items-center gap-2 text-sm text-slate-700">
+                    <p class="text-xs tracking-wider text-slate-400 uppercase">
+                        Stay
+                    </p>
+                    <p
+                        class="mt-1 flex items-center gap-2 text-sm text-slate-700"
+                    >
                         <CalendarDays class="size-4 text-slate-400" />
                         {{ formatDate(booking.check_in) }}
                     </p>
-                    <p class="mt-1 flex items-center gap-2 text-sm text-slate-700">
+                    <p
+                        class="mt-1 flex items-center gap-2 text-sm text-slate-700"
+                    >
                         <CalendarDays class="size-4 text-slate-400" />
                         {{ formatDate(booking.check_out) }}
                     </p>
                     <p class="mt-2 text-xs text-slate-400">
-                        {{ booking.nights }} {{ booking.nights === 1 ? 'night' : 'nights' }}
+                        {{ booking.nights }}
+                        {{ booking.nights === 1 ? 'night' : 'nights' }}
                     </p>
                 </div>
             </div>
@@ -123,16 +147,22 @@ const formatDate = (iso: string) =>
                 v-if="booking.notes"
                 class="mt-6 rounded-lg bg-slate-50 p-4 text-sm text-slate-600"
             >
-                <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-slate-400">
+                <p
+                    class="flex items-center gap-2 text-xs tracking-wider text-slate-400 uppercase"
+                >
                     <MessageSquare class="size-3.5" />
                     Your note
                 </p>
                 <p class="mt-2">{{ booking.notes }}</p>
             </div>
 
-            <div class="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-6">
+            <div
+                class="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-6"
+            >
                 <div>
-                    <p class="text-xs uppercase tracking-wider text-slate-400">Total</p>
+                    <p class="text-xs tracking-wider text-slate-400 uppercase">
+                        Total
+                    </p>
                     <p class="font-serif text-2xl text-[#1a2744]">
                         {{ formatPrice(booking.total_price) }}
                     </p>
@@ -157,7 +187,9 @@ const formatDate = (iso: string) =>
                 class="rounded-xl border border-slate-200 bg-white p-6"
             >
                 <header>
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                    <p
+                        class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                    >
                         Your review
                     </p>
                     <div class="mt-1 flex items-center gap-2">
@@ -178,14 +210,11 @@ const formatDate = (iso: string) =>
                 </header>
                 <p
                     v-if="booking.review.comment"
-                    class="mt-3 whitespace-pre-line text-sm leading-relaxed text-slate-600"
+                    class="mt-3 text-sm leading-relaxed whitespace-pre-line text-slate-600"
                 >
                     {{ booking.review.comment }}
                 </p>
-                <p
-                    v-else
-                    class="mt-3 text-sm italic text-slate-400"
-                >
+                <p v-else class="mt-3 text-sm text-slate-400 italic">
                     No comment shared.
                 </p>
             </div>
@@ -197,7 +226,12 @@ const formatDate = (iso: string) =>
         </section>
 
         <p class="mt-4 text-xs text-slate-400">
-            Need to make a change? <Link :href="roomsIndex().url" class="underline-offset-2 hover:underline">Browse other rooms</Link>
+            Need to make a change?
+            <Link
+                :href="roomsIndex().url"
+                class="underline-offset-2 hover:underline"
+                >Browse other rooms</Link
+            >
             or reach the concierge at concierge@aurelia.example.
         </p>
     </div>

@@ -5,11 +5,18 @@ import GuestLayout from '@/layouts/GuestLayout.vue';
 import RoomCard from '@/components/rooms/RoomCard.vue';
 import { index as roomsIndex } from '@/routes/rooms';
 import type { RoomSummary } from '@/types';
+import { useThreeDTilt } from '@/composables/useThreeDTilt';
 
 defineProps<{
     canRegister: boolean;
     featuredRooms: { data: RoomSummary[] };
 }>();
+
+const {
+    targetEl: heroCardEl,
+    transformStyle: heroCardTransform,
+    transitionStyle: heroCardTransition,
+} = useThreeDTilt({ max: 10, scale: 1.02 });
 
 const testimonials = [
     {
@@ -34,95 +41,242 @@ const testimonials = [
     <Head title="Aurelia Stay — Refined hospitality" />
 
     <GuestLayout>
+        <!-- 3D Parallax Hero Section -->
         <section class="relative overflow-hidden bg-[#1a2744] text-white">
             <div
                 aria-hidden="true"
-                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2000&q=80')] bg-cover bg-center opacity-30"
-                style="animation: aurelia-fade-in 1200ms ease-out both;"
+                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2000&q=80')] bg-cover bg-center opacity-20"
+                style="animation: aurelia-fade-in 1200ms ease-out both"
             />
             <div
                 aria-hidden="true"
-                class="absolute inset-0 bg-gradient-to-b from-[#1a2744]/60 via-[#1a2744]/70 to-[#1a2744]"
+                class="absolute inset-0 bg-gradient-to-b from-[#1a2744]/40 via-[#1a2744]/75 to-[#1a2744]"
             />
             <div
                 aria-hidden="true"
-                class="pointer-events-none absolute -right-32 top-1/4 size-96 rounded-full bg-[#c9a84c]/15 blur-3xl"
+                class="pointer-events-none absolute top-1/4 -right-32 size-96 rounded-full bg-[#c9a84c]/10 blur-3xl"
             />
-            <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6 lg:px-8 lg:py-40">
-                <p class="animate-fade-up text-xs font-semibold uppercase tracking-[0.4em] text-[#c9a84c]">
-                    Aurelia Stay
-                </p>
-                <h1 class="animate-fade-up-delayed-1 mt-4 max-w-3xl font-serif text-5xl leading-tight md:text-6xl">
-                    A retreat where every detail is curated for you.
-                </h1>
-                <p class="animate-fade-up-delayed-2 mt-6 max-w-xl text-base leading-relaxed text-white/80">
-                    Discover thoughtfully designed suites, anticipatory service, and
-                    the kind of quiet luxury that lingers long after check-out.
-                </p>
-                <div class="animate-fade-up-delayed-3 mt-10 flex flex-wrap items-center gap-4">
-                    <Link
-                        :href="roomsIndex().url"
-                        class="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#c9a84c] px-6 py-3 text-sm font-medium text-[#1a2744] shadow-lg shadow-[#c9a84c]/20 transition-colors duration-200 hover:bg-[#dab867]"
+
+            <div
+                class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-32"
+            >
+                <div class="grid items-center gap-12 lg:grid-cols-12">
+                    <!-- Left Column: Content -->
+                    <div class="flex flex-col justify-center lg:col-span-7">
+                        <p
+                            class="animate-fade-up text-xs font-semibold tracking-[0.4em] text-[#c9a84c] uppercase"
+                        >
+                            Aurelia Stay
+                        </p>
+                        <h1
+                            class="animate-fade-up-delayed-1 mt-4 font-serif text-5xl leading-tight text-white md:text-6xl"
+                        >
+                            A retreat where every detail is
+                            <span class="font-normal text-[#c9a84c] italic"
+                                >curated</span
+                            >
+                            for you.
+                        </h1>
+                        <p
+                            class="animate-fade-up-delayed-2 mt-6 max-w-xl text-base leading-relaxed text-slate-300"
+                        >
+                            Discover thoughtfully designed suites, anticipatory
+                            service, and the kind of quiet luxury that lingers
+                            long after check-out.
+                        </p>
+                        <div
+                            class="animate-fade-up-delayed-3 mt-10 flex flex-wrap items-center gap-6"
+                        >
+                            <Link
+                                :href="roomsIndex().url"
+                                class="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#c9a84c] px-6 py-3.5 text-sm font-semibold text-[#1a2744] shadow-lg shadow-[#c9a84c]/20 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#dab867] hover:shadow-xl hover:shadow-[#c9a84c]/30"
+                            >
+                                Browse rooms
+                                <ArrowRight
+                                    class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                                />
+                            </Link>
+                            <a
+                                href="#featured"
+                                class="flex cursor-pointer items-center gap-2 text-sm tracking-widest text-slate-300 uppercase transition-colors duration-200 hover:text-[#c9a84c]"
+                            >
+                                Discover the experience
+                                <span class="animate-bounce">↓</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Interactive 3D Showcase Card -->
+                    <div
+                        class="animate-fade-up-delayed-2 flex justify-center lg:col-span-5 lg:justify-end"
                     >
-                        Browse rooms
-                        <ArrowRight class="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                    </Link>
-                    <a
-                        href="#featured"
-                        class="cursor-pointer text-sm uppercase tracking-widest text-white/70 transition-colors duration-200 hover:text-[#c9a84c]"
-                    >
-                        Discover the experience ↓
-                    </a>
+                        <div
+                            class="perspective-1000 relative w-full max-w-[380px]"
+                        >
+                            <div
+                                ref="heroCardEl"
+                                :style="{
+                                    transform: heroCardTransform,
+                                    transition: heroCardTransition,
+                                }"
+                                class="w-full rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] backdrop-blur-md transition-all duration-200 will-change-transform"
+                            >
+                                <!-- Image Slot -->
+                                <div
+                                    class="relative aspect-[4/5] overflow-hidden rounded-xl bg-slate-900 shadow-inner"
+                                >
+                                    <img
+                                        src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=80"
+                                        alt="Aurelia Suite Showcase"
+                                        class="h-full w-full object-cover opacity-90 transition-transform duration-700 hover:scale-105"
+                                    />
+                                    <!-- Badges -->
+                                    <div
+                                        class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5"
+                                    >
+                                        <div
+                                            class="flex items-center justify-between"
+                                        >
+                                            <span
+                                                class="rounded-full border border-[#c9a84c]/20 bg-[#1a2744]/80 px-2.5 py-1 text-xs font-semibold tracking-widest text-[#c9a84c] uppercase backdrop-blur-sm"
+                                            >
+                                                Featured Suite
+                                            </span>
+                                            <div
+                                                class="flex items-center gap-1 text-sm text-amber-400"
+                                            >
+                                                <Star
+                                                    class="size-4 fill-amber-400 text-amber-400"
+                                                />
+                                                <span
+                                                    class="font-semibold text-white"
+                                                    >4.9</span
+                                                >
+                                            </div>
+                                        </div>
+                                        <h3
+                                            class="mt-2 font-serif text-xl text-white"
+                                        >
+                                            The Royal Penthouse
+                                        </h3>
+                                    </div>
+                                </div>
+                                <!-- Details info -->
+                                <div
+                                    class="mt-4 flex items-center justify-between px-1"
+                                >
+                                    <div>
+                                        <p
+                                            class="text-xs tracking-wider text-slate-400 uppercase"
+                                        >
+                                            Starting from
+                                        </p>
+                                        <p
+                                            class="font-serif text-lg text-[#c9a84c]"
+                                        >
+                                            $380
+                                            <span class="text-xs text-slate-400"
+                                                >/ night</span
+                                            >
+                                        </p>
+                                    </div>
+                                    <Link
+                                        :href="roomsIndex().url"
+                                        class="border-b border-white/20 pb-0.5 text-xs font-semibold tracking-wider text-white uppercase transition-colors duration-200 hover:border-[#c9a84c] hover:text-[#c9a84c]"
+                                    >
+                                        View Details
+                                    </Link>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Shadow beneath the card -->
+                            <div
+                                class="absolute right-[10%] -bottom-6 left-[10%] -z-10 h-8 rounded-full bg-black/40 blur-xl transition-all duration-300"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- Feature Cards -->
         <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
             <div class="grid gap-8 md:grid-cols-3">
-                <div class="group cursor-default text-center">
+                <div
+                    class="group cursor-default rounded-2xl border border-slate-200/60 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a84c]/50 hover:shadow-[0_15px_30px_rgba(26,39,68,0.05)]"
+                >
                     <div
-                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3"
+                        class="flex size-14 items-center justify-center rounded-2xl bg-[#1a2744] text-[#c9a84c] shadow-lg shadow-[#1a2744]/10 transition-all duration-300 group-hover:rotate-6 group-hover:bg-[#c9a84c] group-hover:text-[#1a2744]"
                     >
-                        <Sparkles class="size-5" />
+                        <Sparkles class="size-6" />
                     </div>
-                    <h3 class="mt-4 font-serif text-lg text-[#1a2744]">Curated suites</h3>
-                    <p class="mt-2 text-sm text-slate-500">
-                        Twenty rooms across four collections, each with its own character.
+                    <h3
+                        class="mt-6 font-serif text-xl font-semibold text-[#1a2744]"
+                    >
+                        Curated suites
+                    </h3>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-500">
+                        Twenty rooms across four collections, each with its own
+                        unique layout, custom furnishings, and artistic
+                        character.
                     </p>
                 </div>
-                <div class="group cursor-default text-center">
+
+                <div
+                    class="group cursor-default rounded-2xl border border-slate-200/60 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a84c]/50 hover:shadow-[0_15px_30px_rgba(26,39,68,0.05)]"
+                >
                     <div
-                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3"
+                        class="flex size-14 items-center justify-center rounded-2xl bg-[#1a2744] text-[#c9a84c] shadow-lg shadow-[#1a2744]/10 transition-all duration-300 group-hover:rotate-6 group-hover:bg-[#c9a84c] group-hover:text-[#1a2744]"
                     >
-                        <ShieldCheck class="size-5" />
+                        <ShieldCheck class="size-6" />
                     </div>
-                    <h3 class="mt-4 font-serif text-lg text-[#1a2744]">Confident booking</h3>
-                    <p class="mt-2 text-sm text-slate-500">
-                        Free cancellation on pending reservations. No hidden charges.
+                    <h3
+                        class="mt-6 font-serif text-xl font-semibold text-[#1a2744]"
+                    >
+                        Confident booking
+                    </h3>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-500">
+                        Free cancellation on pending reservations. Secure
+                        payments, direct communication, and no hidden booking
+                        charges.
                     </p>
                 </div>
-                <div class="group cursor-default text-center">
+
+                <div
+                    class="group cursor-default rounded-2xl border border-slate-200/60 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#c9a84c]/50 hover:shadow-[0_15px_30px_rgba(26,39,68,0.05)]"
+                >
                     <div
-                        class="mx-auto flex size-12 items-center justify-center rounded-full bg-[#1a2744] text-[#c9a84c] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:rotate-3"
+                        class="flex size-14 items-center justify-center rounded-2xl bg-[#1a2744] text-[#c9a84c] shadow-lg shadow-[#1a2744]/10 transition-all duration-300 group-hover:rotate-6 group-hover:bg-[#c9a84c] group-hover:text-[#1a2744]"
                     >
-                        <Wifi class="size-5" />
+                        <Wifi class="size-6" />
                     </div>
-                    <h3 class="mt-4 font-serif text-lg text-[#1a2744]">All amenities included</h3>
-                    <p class="mt-2 text-sm text-slate-500">
-                        Premium Wi-Fi, breakfast, concierge — included in every stay.
+                    <h3
+                        class="mt-6 font-serif text-xl font-semibold text-[#1a2744]"
+                    >
+                        All amenities included
+                    </h3>
+                    <p class="mt-3 text-sm leading-relaxed text-slate-500">
+                        Premium high-speed Wi-Fi, organic breakfast buffet, and
+                        dedicated 24/7 concierge service included with every
+                        stay.
                     </p>
                 </div>
             </div>
         </section>
 
+        <!-- Featured Rooms Section -->
         <section id="featured" class="bg-slate-50 py-20">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex items-end justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                        <p
+                            class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                        >
                             Featured
                         </p>
-                        <h2 class="mt-2 font-serif text-3xl text-[#1a2744] md:text-4xl">
+                        <h2
+                            class="mt-2 font-serif text-3xl text-[#1a2744] md:text-4xl"
+                        >
                             Our most cherished rooms
                         </h2>
                     </div>
@@ -152,22 +306,35 @@ const testimonials = [
             </div>
         </section>
 
-        <section id="testimonials" class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <!-- Testimonials/Guest Letters -->
+        <section
+            id="testimonials"
+            class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
+        >
             <div class="text-center">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                <p
+                    class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                >
                     Guest Letters
                 </p>
                 <h2 class="mt-2 font-serif text-3xl text-[#1a2744] md:text-4xl">
                     Words from those who have stayed
                 </h2>
             </div>
-            <div class="mt-12 grid gap-6 md:grid-cols-3">
+
+            <div class="mt-12 grid gap-8 md:grid-cols-3">
                 <figure
                     v-for="t in testimonials"
                     :key="t.name"
-                    class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+                    class="relative rounded-2xl border border-slate-200/60 bg-white p-8 shadow-sm transition-all duration-300 hover:border-[#c9a84c]/40 hover:shadow-[0_15px_30px_rgba(26,39,68,0.04)]"
                 >
-                    <div class="flex gap-0.5">
+                    <!-- Quote Mark overlay -->
+                    <div
+                        class="pointer-events-none absolute top-6 right-6 font-serif text-7xl text-slate-100 select-none"
+                    >
+                        “
+                    </div>
+                    <div class="relative flex gap-1">
                         <Star
                             v-for="i in 5"
                             :key="i"
@@ -179,10 +346,15 @@ const testimonials = [
                             "
                         />
                     </div>
-                    <blockquote class="mt-4 font-serif text-base leading-relaxed text-slate-700">
+                    <blockquote
+                        class="relative mt-5 font-serif text-base leading-relaxed text-slate-700 italic"
+                    >
                         "{{ t.text }}"
                     </blockquote>
-                    <figcaption class="mt-4 text-sm font-medium text-[#1a2744]">
+                    <hr class="my-5 border-slate-100" />
+                    <figcaption
+                        class="text-sm font-semibold tracking-wider text-[#1a2744] uppercase"
+                    >
                         — {{ t.name }}
                     </figcaption>
                 </figure>

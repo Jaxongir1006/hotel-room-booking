@@ -33,7 +33,9 @@ const submit = () => {
         @submit.prevent="submit"
     >
         <header>
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Share your experience
             </p>
             <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
@@ -45,7 +47,9 @@ const submit = () => {
         </header>
 
         <div class="mt-5">
-            <label class="text-xs font-medium uppercase tracking-wider text-slate-500">
+            <label
+                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+            >
                 Rating
             </label>
             <div class="mt-2 flex items-center gap-1">
@@ -72,10 +76,7 @@ const submit = () => {
                     {{ activeRating }} / 5
                 </span>
             </div>
-            <p
-                v-if="form.errors.rating"
-                class="mt-1.5 text-xs text-rose-600"
-            >
+            <p v-if="form.errors.rating" class="mt-1.5 text-xs text-rose-600">
                 {{ form.errors.rating }}
             </p>
         </div>
@@ -83,9 +84,10 @@ const submit = () => {
         <div class="mt-5">
             <label
                 for="review-comment"
-                class="text-xs font-medium uppercase tracking-wider text-slate-500"
+                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
             >
-                Comment <span class="text-slate-400 normal-case">(optional)</span>
+                Comment
+                <span class="text-slate-400 normal-case">(optional)</span>
             </label>
             <textarea
                 id="review-comment"
@@ -93,7 +95,7 @@ const submit = () => {
                 rows="4"
                 maxlength="1000"
                 placeholder="Tell us about the room, the service, the little details that made the stay memorable…"
-                class="mt-2 block w-full resize-none rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm transition focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="mt-2 block w-full resize-none rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm transition focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
             />
             <div class="mt-1 flex justify-between text-xs text-slate-400">
                 <span v-if="form.errors.comment" class="text-rose-600">

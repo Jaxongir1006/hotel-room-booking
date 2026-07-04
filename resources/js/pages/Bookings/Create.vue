@@ -37,17 +37,21 @@ const room = computed(() => props.room?.data ?? null);
 
         <div v-if="room" class="mt-6 grid gap-8 lg:grid-cols-[1.2fr_1fr]">
             <section>
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                <p
+                    class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                >
                     Reserve · {{ room.type_label }}
                 </p>
-                <h1 class="mt-2 font-serif text-3xl text-[#1a2744]">{{ room.name }}</h1>
+                <h1 class="mt-2 font-serif text-3xl text-[#1a2744]">
+                    {{ room.name }}
+                </h1>
                 <p class="mt-3 text-sm leading-relaxed text-slate-500">
                     {{ room.description }}
                 </p>
 
                 <Link
                     :href="roomShow({ slug: room.slug }).url"
-                    class="mt-4 inline-flex items-center gap-1 text-xs uppercase tracking-widest text-[#1a2744] underline-offset-4 hover:underline"
+                    class="mt-4 inline-flex items-center gap-1 text-xs tracking-widest text-[#1a2744] uppercase underline-offset-4 hover:underline"
                 >
                     <BedDouble class="size-3.5" />
                     See full room details
@@ -57,13 +61,19 @@ const room = computed(() => props.room?.data ?? null);
                     v-if="room.thumbnail"
                     class="mt-6 overflow-hidden rounded-xl"
                 >
-                    <img :src="room.thumbnail" :alt="room.name" class="aspect-[16/10] w-full object-cover" />
+                    <img
+                        :src="room.thumbnail"
+                        :alt="room.name"
+                        class="aspect-[16/10] w-full object-cover"
+                    />
                 </div>
             </section>
 
             <aside class="lg:sticky lg:top-6 lg:self-start">
                 <div class="rounded-xl border border-slate-200 bg-white p-6">
-                    <h2 class="font-serif text-lg text-[#1a2744]">Your dates</h2>
+                    <h2 class="font-serif text-lg text-[#1a2744]">
+                        Your dates
+                    </h2>
                     <BookingForm
                         class="mt-4"
                         :room-slug="room.slug"

@@ -39,9 +39,13 @@ const formatDate = (iso: string) =>
     <Head title="My reservations" />
 
     <div class="mx-auto w-full max-w-5xl p-6">
-        <header class="animate-fade-up flex flex-wrap items-end justify-between gap-3">
+        <header
+            class="animate-fade-up flex flex-wrap items-end justify-between gap-3"
+        >
             <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a84c]">
+                <p
+                    class="text-xs font-semibold tracking-[0.2em] text-[#c9a84c] uppercase"
+                >
                     Your stay
                 </p>
                 <h1 class="mt-1 font-serif text-3xl text-[#1a2744] md:text-4xl">
@@ -55,7 +59,9 @@ const formatDate = (iso: string) =>
                 :href="roomsIndex().url"
                 class="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#1a2744] px-4 py-2 text-sm font-medium text-white shadow-md shadow-[#1a2744]/10 transition-colors duration-200 hover:bg-[#243558]"
             >
-                <Hotel class="size-4 transition-transform duration-200 group-hover:scale-110" />
+                <Hotel
+                    class="size-4 transition-transform duration-200 group-hover:scale-110"
+                />
                 Book another room
             </Link>
         </header>
@@ -68,7 +74,9 @@ const formatDate = (iso: string) =>
                 class="group flex cursor-pointer flex-wrap items-center gap-4 rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#c9a84c]/40 hover:shadow-md"
                 :style="`animation: aurelia-fade-up 480ms cubic-bezier(0.22, 1, 0.36, 1) ${40 * idx}ms both;`"
             >
-                <div class="relative size-20 shrink-0 overflow-hidden rounded-lg bg-slate-100">
+                <div
+                    class="relative size-20 shrink-0 overflow-hidden rounded-lg bg-slate-100"
+                >
                     <img
                         v-if="booking.room?.thumbnail"
                         :src="booking.room.thumbnail"
@@ -84,19 +92,29 @@ const formatDate = (iso: string) =>
                 </div>
                 <div class="min-w-0 flex-1">
                     <div class="flex flex-wrap items-center gap-2">
-                        <h2 class="font-serif text-base text-[#1a2744] transition-colors duration-200 group-hover:text-[#c9a84c]">
+                        <h2
+                            class="font-serif text-base text-[#1a2744] transition-colors duration-200 group-hover:text-[#c9a84c]"
+                        >
                             {{ booking.room?.name ?? 'Reservation' }}
                         </h2>
-                        <StatusBadge :status="booking.status" :label="booking.status_label" />
+                        <StatusBadge
+                            :status="booking.status"
+                            :label="booking.status_label"
+                        />
                     </div>
-                    <p class="mt-1 flex items-center gap-1.5 text-sm text-slate-500">
+                    <p
+                        class="mt-1 flex items-center gap-1.5 text-sm text-slate-500"
+                    >
                         <CalendarDays class="size-4 text-slate-400" />
-                        {{ formatDate(booking.check_in) }} → {{ formatDate(booking.check_out) }}
+                        {{ formatDate(booking.check_in) }} →
+                        {{ formatDate(booking.check_out) }}
                         <span class="text-slate-300">·</span>
                         {{ booking.nights }}
                         {{ booking.nights === 1 ? 'night' : 'nights' }}
                     </p>
-                    <p class="mt-1 font-mono text-[11px] tracking-wider text-slate-400">
+                    <p
+                        class="mt-1 font-mono text-[11px] tracking-wider text-slate-400"
+                    >
                         Ref · {{ booking.reference }}
                     </p>
                 </div>
@@ -105,7 +123,7 @@ const formatDate = (iso: string) =>
                         {{ formatPrice(booking.total_price) }}
                     </p>
                     <ChevronRight
-                        class="ml-auto mt-1 size-4 text-slate-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#c9a84c]"
+                        class="mt-1 ml-auto size-4 text-slate-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-[#c9a84c]"
                     />
                 </div>
             </Link>
@@ -124,8 +142,8 @@ const formatDate = (iso: string) =>
                 No reservations yet
             </h2>
             <p class="mx-auto mt-2 max-w-sm text-sm text-slate-500">
-                Discover our suites and book your first escape — every stay begins
-                with one click.
+                Discover our suites and book your first escape — every stay
+                begins with one click.
             </p>
             <Link
                 :href="roomsIndex().url"

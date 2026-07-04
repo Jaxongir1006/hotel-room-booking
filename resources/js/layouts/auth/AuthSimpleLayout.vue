@@ -38,19 +38,23 @@ defineProps<{
                     >
                         <Hotel class="size-5" />
                     </span>
-                    <span class="font-serif text-lg tracking-wide">Aurelia Stay</span>
+                    <span class="font-serif text-lg tracking-wide"
+                        >Aurelia Stay</span
+                    >
                 </Link>
 
                 <div class="animate-fade-up max-w-md">
-                    <p class="text-xs font-semibold uppercase tracking-[0.3em] text-[#c9a84c]">
+                    <p
+                        class="text-xs font-semibold tracking-[0.3em] text-[#c9a84c] uppercase"
+                    >
                         Concierge access
                     </p>
                     <h2 class="mt-3 font-serif text-4xl leading-tight">
                         Pick up where you left off, or plan a new escape.
                     </h2>
                     <p class="mt-4 text-sm leading-relaxed text-white/70">
-                        Manage reservations, share reviews, and unlock returning-guest
-                        amenities — all in one place.
+                        Manage reservations, share reviews, and unlock
+                        returning-guest amenities — all in one place.
                     </p>
                 </div>
 
@@ -66,7 +70,7 @@ defineProps<{
         >
             <Link
                 :href="home().url"
-                class="absolute left-6 top-6 inline-flex items-center gap-2 text-sm text-slate-500 transition-colors duration-200 hover:text-[#1a2744] lg:hidden"
+                class="absolute top-6 left-6 inline-flex items-center gap-2 text-sm text-slate-500 transition-colors duration-200 hover:text-[#1a2744] lg:hidden"
             >
                 <span
                     class="flex size-8 items-center justify-center rounded-md bg-[#c9a84c] text-[#1a2744]"
@@ -78,14 +82,15 @@ defineProps<{
 
             <div class="animate-fade-up w-full max-w-sm">
                 <div class="space-y-2 text-center">
-                    <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-[#c9a84c]">
+                    <p
+                        class="text-[11px] font-semibold tracking-[0.25em] text-[#c9a84c] uppercase"
+                    >
                         Welcome
                     </p>
-                    <h1 class="font-serif text-3xl text-[#1a2744]">{{ title }}</h1>
-                    <p
-                        v-if="description"
-                        class="text-sm text-slate-500"
-                    >
+                    <h1 class="font-serif text-3xl text-[#1a2744]">
+                        {{ title }}
+                    </h1>
+                    <p v-if="description" class="text-sm text-slate-500">
                         {{ description }}
                     </p>
                 </div>

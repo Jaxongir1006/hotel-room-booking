@@ -149,13 +149,15 @@ const submit = () => {
         >
             <div class="grid gap-5 sm:grid-cols-2">
                 <label class="space-y-1.5">
-                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <span
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Name
                     </span>
                     <input
                         v-model="form.name"
                         type="text"
-                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                     />
                     <p v-if="form.errors.name" class="text-xs text-rose-600">
                         {{ form.errors.name }}
@@ -163,12 +165,14 @@ const submit = () => {
                 </label>
 
                 <label class="space-y-1.5">
-                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <span
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Type
                     </span>
                     <select
                         v-model="form.type"
-                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                     >
                         <option
                             v-for="t in options.types"
@@ -184,7 +188,9 @@ const submit = () => {
                 </label>
 
                 <label class="space-y-1.5">
-                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <span
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Price per night ($)
                     </span>
                     <input
@@ -192,20 +198,25 @@ const submit = () => {
                         type="number"
                         step="0.01"
                         min="0"
-                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                     />
-                    <p v-if="form.errors.price_per_night" class="text-xs text-rose-600">
+                    <p
+                        v-if="form.errors.price_per_night"
+                        class="text-xs text-rose-600"
+                    >
                         {{ form.errors.price_per_night }}
                     </p>
                 </label>
 
                 <label class="space-y-1.5">
-                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <span
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Status
                     </span>
                     <select
                         v-model="form.status"
-                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                     >
                         <option
                             v-for="s in options.statuses"
@@ -221,7 +232,9 @@ const submit = () => {
                 </label>
 
                 <label class="space-y-1.5">
-                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <span
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Capacity
                     </span>
                     <input
@@ -229,15 +242,20 @@ const submit = () => {
                         type="number"
                         min="1"
                         max="20"
-                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                     />
-                    <p v-if="form.errors.capacity" class="text-xs text-rose-600">
+                    <p
+                        v-if="form.errors.capacity"
+                        class="text-xs text-rose-600"
+                    >
                         {{ form.errors.capacity }}
                     </p>
                 </label>
 
                 <label class="space-y-1.5">
-                    <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <span
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Floor
                     </span>
                     <input
@@ -245,7 +263,7 @@ const submit = () => {
                         type="number"
                         min="0"
                         max="200"
-                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                     />
                     <p v-if="form.errors.floor" class="text-xs text-rose-600">
                         {{ form.errors.floor }}
@@ -254,13 +272,15 @@ const submit = () => {
             </div>
 
             <label class="block space-y-1.5">
-                <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <span
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     Description
                 </span>
                 <textarea
                     v-model="form.description"
                     rows="6"
-                    class="block w-full resize-y rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="block w-full resize-y rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                 />
                 <p v-if="form.errors.description" class="text-xs text-rose-600">
                     {{ form.errors.description }}
@@ -268,7 +288,9 @@ const submit = () => {
             </label>
 
             <div class="space-y-3">
-                <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <p
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     Amenities
                 </p>
                 <div class="flex flex-wrap gap-2">
@@ -292,7 +314,7 @@ const submit = () => {
                         v-model="newAmenity"
                         type="text"
                         placeholder="Add an amenity (e.g. WiFi)"
-                        class="flex-1 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                        class="flex-1 rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                         @keydown.enter.prevent="addAmenity"
                     />
                     <button
@@ -310,7 +332,9 @@ const submit = () => {
             </div>
 
             <div class="space-y-3">
-                <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <p
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     Thumbnail
                 </p>
                 <div class="flex items-center gap-4">
@@ -324,7 +348,9 @@ const submit = () => {
                             alt="New thumbnail"
                         />
                         <img
-                            v-else-if="initial?.thumbnail && !form.remove_thumbnail"
+                            v-else-if="
+                                initial?.thumbnail && !form.remove_thumbnail
+                            "
                             :src="initial.thumbnail"
                             class="size-full object-cover"
                             alt="Existing thumbnail"
@@ -345,7 +371,11 @@ const submit = () => {
                             />
                         </label>
                         <button
-                            v-if="(initial?.thumbnail && !form.remove_thumbnail) || form.thumbnail"
+                            v-if="
+                                (initial?.thumbnail &&
+                                    !form.remove_thumbnail) ||
+                                form.thumbnail
+                            "
                             type="button"
                             class="block text-xs text-rose-600 hover:underline"
                             @click="
@@ -363,7 +393,9 @@ const submit = () => {
             </div>
 
             <div class="space-y-3">
-                <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <p
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     Gallery
                 </p>
                 <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -372,10 +404,14 @@ const submit = () => {
                         :key="`kept-${path}`"
                         class="group relative aspect-square overflow-hidden rounded-lg border border-slate-200"
                     >
-                        <img :src="path" class="size-full object-cover" alt="" />
+                        <img
+                            :src="path"
+                            class="size-full object-cover"
+                            alt=""
+                        />
                         <button
                             type="button"
-                            class="absolute right-1.5 top-1.5 rounded-full bg-white/90 p-1 text-rose-600 opacity-0 transition group-hover:opacity-100"
+                            class="absolute top-1.5 right-1.5 rounded-full bg-white/90 p-1 text-rose-600 opacity-0 transition group-hover:opacity-100"
                             @click="removeKeptImage(path)"
                         >
                             <X class="size-3.5" />
@@ -393,7 +429,7 @@ const submit = () => {
                         />
                         <button
                             type="button"
-                            class="absolute right-1.5 top-1.5 rounded-full bg-white/90 p-1 text-rose-600 opacity-0 transition group-hover:opacity-100"
+                            class="absolute top-1.5 right-1.5 rounded-full bg-white/90 p-1 text-rose-600 opacity-0 transition group-hover:opacity-100"
                             @click="removeNewImage(i)"
                         >
                             <X class="size-3.5" />
@@ -429,7 +465,10 @@ const submit = () => {
                     :disabled="form.processing"
                     class="inline-flex items-center gap-2 rounded-md bg-[#1a2744] px-5 py-2 text-sm font-medium text-white transition hover:bg-[#243558] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                    <Loader2 v-if="form.processing" class="size-4 animate-spin" />
+                    <Loader2
+                        v-if="form.processing"
+                        class="size-4 animate-spin"
+                    />
                     {{ isEdit ? 'Save changes' : 'Create room' }}
                 </button>
             </div>

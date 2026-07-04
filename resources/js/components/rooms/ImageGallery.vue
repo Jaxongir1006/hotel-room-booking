@@ -27,7 +27,8 @@ const next = () => {
 const prev = () => {
     if (lightboxIndex.value === null) return;
     lightboxIndex.value =
-        (lightboxIndex.value - 1 + allImages.value.length) % allImages.value.length;
+        (lightboxIndex.value - 1 + allImages.value.length) %
+        allImages.value.length;
 };
 
 const handleKey = (e: KeyboardEvent) => {
@@ -91,7 +92,7 @@ onBeforeUnmount(() => {
             >
                 <button
                     type="button"
-                    class="absolute right-6 top-6 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20"
+                    class="absolute top-6 right-6 rounded-full bg-white/10 p-2 text-white transition hover:bg-white/20"
                     @click="close"
                 >
                     <X class="size-5" />

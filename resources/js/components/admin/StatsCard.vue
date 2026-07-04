@@ -23,11 +23,17 @@ const accentMap: Record<string, string> = {
     >
         <div class="flex items-start justify-between gap-4">
             <div>
-                <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <p
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     {{ label }}
                 </p>
-                <p class="mt-2 font-serif text-3xl text-[#1a2744]">{{ value }}</p>
-                <p v-if="helper" class="mt-1 text-xs text-slate-400">{{ helper }}</p>
+                <p class="mt-2 font-serif text-3xl text-[#1a2744]">
+                    {{ value }}
+                </p>
+                <p v-if="helper" class="mt-1 text-xs text-slate-400">
+                    {{ helper }}
+                </p>
             </div>
             <span
                 v-if="icon"

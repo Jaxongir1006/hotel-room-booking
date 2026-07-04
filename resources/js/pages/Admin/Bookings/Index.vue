@@ -54,7 +54,10 @@ const formatPrice = (value: number) =>
 
 const formatDate = (iso: string | null) =>
     iso
-        ? new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+        ? new Date(iso).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+          })
         : '—';
 
 const columns = [
@@ -73,25 +76,31 @@ const columns = [
 
     <div class="space-y-5 p-4 md:p-6">
         <header>
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Reservations
             </p>
             <h1 class="mt-1 font-serif text-3xl text-[#1a2744]">Bookings</h1>
         </header>
 
-        <div class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr]">
+        <div
+            class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr]"
+        >
             <label class="relative">
-                <Search class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <Search
+                    class="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+                />
                 <input
                     v-model="search"
                     type="search"
                     placeholder="Search by reference, guest, room…"
-                    class="w-full rounded-md border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="w-full rounded-md border border-slate-200 bg-white py-2 pr-3 pl-9 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                 />
             </label>
             <select
                 v-model="status"
-                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
             >
                 <option value="">All statuses</option>
                 <option v-for="s in statuses" :key="s.value" :value="s.value">
@@ -116,7 +125,9 @@ const columns = [
             </template>
             <template #cell-guest="{ row }">
                 <div>
-                    <p class="font-medium text-slate-800">{{ row.user?.name ?? '—' }}</p>
+                    <p class="font-medium text-slate-800">
+                        {{ row.user?.name ?? '—' }}
+                    </p>
                     <p class="text-xs text-slate-400">{{ row.user?.email }}</p>
                 </div>
             </template>
@@ -125,7 +136,8 @@ const columns = [
             </template>
             <template #cell-stay="{ row }">
                 <span class="text-xs text-slate-500">
-                    {{ formatDate(row.check_in) }} → {{ formatDate(row.check_out) }}
+                    {{ formatDate(row.check_in) }} →
+                    {{ formatDate(row.check_out) }}
                 </span>
             </template>
             <template #cell-total_price="{ row }">

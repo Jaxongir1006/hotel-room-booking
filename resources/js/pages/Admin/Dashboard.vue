@@ -196,7 +196,9 @@ const recentColumns = [
 
     <div class="space-y-6 p-4 md:p-6">
         <header>
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Administration
             </p>
             <h1 class="mt-1 font-serif text-3xl text-[#1a2744]">Overview</h1>
@@ -231,10 +233,14 @@ const recentColumns = [
         </section>
 
         <section class="grid gap-4 lg:grid-cols-3">
-            <div class="lg:col-span-2 rounded-xl border border-slate-200 bg-white p-5">
+            <div
+                class="rounded-xl border border-slate-200 bg-white p-5 lg:col-span-2"
+            >
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                        <p
+                            class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                        >
                             Bookings · last 30 days
                         </p>
                         <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
@@ -251,10 +257,14 @@ const recentColumns = [
             <div class="rounded-xl border border-slate-200 bg-white p-5">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                        <p
+                            class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                        >
                             Revenue
                         </p>
-                        <h2 class="mt-1 font-serif text-xl text-[#1a2744]">This month</h2>
+                        <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
+                            This month
+                        </h2>
                     </div>
                     <DollarSign class="size-5 text-slate-300" />
                 </div>
@@ -264,11 +274,16 @@ const recentColumns = [
                 <p
                     v-if="revenueDelta !== null"
                     class="mt-1 text-xs"
-                    :class="revenueDelta >= 0 ? 'text-emerald-600' : 'text-rose-600'"
+                    :class="
+                        revenueDelta >= 0 ? 'text-emerald-600' : 'text-rose-600'
+                    "
                 >
-                    {{ revenueDelta >= 0 ? '+' : '' }}{{ revenueDelta.toFixed(1) }}% vs last month
+                    {{ revenueDelta >= 0 ? '+' : ''
+                    }}{{ revenueDelta.toFixed(1) }}% vs last month
                 </p>
-                <p v-else class="mt-1 text-xs text-slate-400">No prior month data</p>
+                <p v-else class="mt-1 text-xs text-slate-400">
+                    No prior month data
+                </p>
 
                 <dl class="mt-5 space-y-2 text-sm">
                     <div class="flex justify-between text-slate-600">
@@ -285,20 +300,30 @@ const recentColumns = [
 
         <section class="grid gap-4 lg:grid-cols-3">
             <div class="rounded-xl border border-slate-200 bg-white p-5">
-                <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                <p
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     Bookings by status
                 </p>
-                <h2 class="mt-1 font-serif text-xl text-[#1a2744]">Distribution</h2>
+                <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
+                    Distribution
+                </h2>
                 <div class="mt-5 h-56">
                     <Bar :data="statusData" :options="statusOptions" />
                 </div>
             </div>
 
-            <div class="lg:col-span-2 rounded-xl border border-slate-200 bg-white p-5">
-                <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+            <div
+                class="rounded-xl border border-slate-200 bg-white p-5 lg:col-span-2"
+            >
+                <p
+                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                >
                     Top rooms
                 </p>
-                <h2 class="mt-1 font-serif text-xl text-[#1a2744]">By revenue</h2>
+                <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
+                    By revenue
+                </h2>
                 <ul class="mt-4 divide-y divide-slate-100">
                     <li
                         v-for="room in top_rooms"
@@ -313,7 +338,9 @@ const recentColumns = [
                                 class="size-12 rounded-lg object-cover"
                             />
                             <div>
-                                <p class="font-medium text-slate-800">{{ room.name }}</p>
+                                <p class="font-medium text-slate-800">
+                                    {{ room.name }}
+                                </p>
                                 <p class="text-xs text-slate-400">
                                     {{ room.bookings_count }} bookings
                                 </p>
@@ -323,7 +350,10 @@ const recentColumns = [
                             {{ formatCurrency(room.revenue) }}
                         </p>
                     </li>
-                    <li v-if="!top_rooms.length" class="py-6 text-center text-sm text-slate-400">
+                    <li
+                        v-if="!top_rooms.length"
+                        class="py-6 text-center text-sm text-slate-400"
+                    >
                         No room data yet.
                     </li>
                 </ul>
@@ -333,10 +363,14 @@ const recentColumns = [
         <section>
             <div class="mb-3 flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <p
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Activity
                     </p>
-                    <h2 class="mt-1 font-serif text-xl text-[#1a2744]">Recent bookings</h2>
+                    <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
+                        Recent bookings
+                    </h2>
                 </div>
             </div>
 
@@ -356,7 +390,8 @@ const recentColumns = [
                 </template>
                 <template #cell-stay="{ row }">
                     <span class="text-xs text-slate-500">
-                        {{ formatDate(row.check_in) }} → {{ formatDate(row.check_out) }}
+                        {{ formatDate(row.check_in) }} →
+                        {{ formatDate(row.check_out) }}
                     </span>
                 </template>
                 <template #cell-total_price="{ row }">
@@ -366,7 +401,7 @@ const recentColumns = [
                 </template>
                 <template #cell-status="{ row }">
                     <StatusBadge
-                        :status="(row.status as BookingStatus)"
+                        :status="row.status as BookingStatus"
                         :label="row.status_label"
                     />
                 </template>

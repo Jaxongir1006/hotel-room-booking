@@ -103,24 +103,28 @@ const daysUntil = (iso: string) => {
         >
             <div
                 aria-hidden="true"
-                class="pointer-events-none absolute -right-20 -top-24 size-72 rounded-full bg-[#c9a84c]/20 blur-3xl"
+                class="pointer-events-none absolute -top-24 -right-20 size-72 rounded-full bg-[#c9a84c]/20 blur-3xl"
             />
             <div
                 aria-hidden="true"
-                class="pointer-events-none absolute -bottom-16 right-32 size-48 rounded-full bg-[#c9a84c]/10 blur-3xl"
+                class="pointer-events-none absolute right-32 -bottom-16 size-48 rounded-full bg-[#c9a84c]/10 blur-3xl"
             />
 
-            <div class="relative flex flex-wrap items-center justify-between gap-6">
+            <div
+                class="relative flex flex-wrap items-center justify-between gap-6"
+            >
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#c9a84c]">
+                    <p
+                        class="text-xs font-semibold tracking-[0.2em] text-[#c9a84c] uppercase"
+                    >
                         {{ greeting }}
                     </p>
                     <h1 class="mt-2 font-serif text-3xl md:text-4xl">
                         Welcome back, {{ firstName }}.
                     </h1>
                     <p class="mt-2 max-w-md text-sm text-white/70">
-                        Here's a glance at your stays, recent reservations and rooms
-                        worth exploring.
+                        Here's a glance at your stays, recent reservations and
+                        rooms worth exploring.
                     </p>
                 </div>
                 <div class="flex flex-wrap items-center gap-3">
@@ -131,7 +135,9 @@ const daysUntil = (iso: string) => {
                     >
                         <ShieldCheck class="size-4" />
                         Admin panel
-                        <ArrowRight class="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                        <ArrowRight
+                            class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                        />
                     </Link>
                     <Link
                         :href="roomsIndex().url"
@@ -152,7 +158,9 @@ const daysUntil = (iso: string) => {
                 class="group cursor-default rounded-xl border border-slate-200 bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c9a84c]/40 hover:shadow-md"
             >
                 <div class="flex items-start justify-between">
-                    <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <p
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Upcoming
                     </p>
                     <span
@@ -161,7 +169,9 @@ const daysUntil = (iso: string) => {
                         <CalendarCheck class="size-4" />
                     </span>
                 </div>
-                <p class="mt-3 font-serif text-3xl text-[#1a2744]">{{ stats.upcoming }}</p>
+                <p class="mt-3 font-serif text-3xl text-[#1a2744]">
+                    {{ stats.upcoming }}
+                </p>
                 <p class="mt-1 text-xs text-slate-400">Stays on the way</p>
             </article>
 
@@ -169,7 +179,9 @@ const daysUntil = (iso: string) => {
                 class="group cursor-default rounded-xl border border-slate-200 bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c9a84c]/40 hover:shadow-md"
             >
                 <div class="flex items-start justify-between">
-                    <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <p
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Completed
                     </p>
                     <span
@@ -178,7 +190,9 @@ const daysUntil = (iso: string) => {
                         <BedDouble class="size-4" />
                     </span>
                 </div>
-                <p class="mt-3 font-serif text-3xl text-[#1a2744]">{{ stats.completed }}</p>
+                <p class="mt-3 font-serif text-3xl text-[#1a2744]">
+                    {{ stats.completed }}
+                </p>
                 <p class="mt-1 text-xs text-slate-400">Stays enjoyed</p>
             </article>
 
@@ -186,7 +200,9 @@ const daysUntil = (iso: string) => {
                 class="group cursor-default rounded-xl border border-slate-200 bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c9a84c]/40 hover:shadow-md"
             >
                 <div class="flex items-start justify-between">
-                    <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <p
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Reviews
                     </p>
                     <span
@@ -195,7 +211,9 @@ const daysUntil = (iso: string) => {
                         <Star class="size-4" />
                     </span>
                 </div>
-                <p class="mt-3 font-serif text-3xl text-[#1a2744]">{{ stats.reviews }}</p>
+                <p class="mt-3 font-serif text-3xl text-[#1a2744]">
+                    {{ stats.reviews }}
+                </p>
                 <p class="mt-1 text-xs text-slate-400">Stories shared</p>
             </article>
 
@@ -203,7 +221,9 @@ const daysUntil = (iso: string) => {
                 class="group cursor-default rounded-xl border border-slate-200 bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#c9a84c]/40 hover:shadow-md"
             >
                 <div class="flex items-start justify-between">
-                    <p class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                    <p
+                        class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                    >
                         Cancelled
                     </p>
                     <span
@@ -212,20 +232,22 @@ const daysUntil = (iso: string) => {
                         <XCircle class="size-4" />
                     </span>
                 </div>
-                <p class="mt-3 font-serif text-3xl text-[#1a2744]">{{ stats.cancelled }}</p>
+                <p class="mt-3 font-serif text-3xl text-[#1a2744]">
+                    {{ stats.cancelled }}
+                </p>
                 <p class="mt-1 text-xs text-slate-400">Reservations released</p>
             </article>
         </section>
 
         <!-- Next stay + Recent bookings -->
-        <section
-            class="animate-fade-up-delayed-2 grid gap-6 lg:grid-cols-3"
-        >
+        <section class="animate-fade-up-delayed-2 grid gap-6 lg:grid-cols-3">
             <!-- Next stay -->
             <div class="lg:col-span-2">
                 <div class="flex items-end justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                        <p
+                            class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                        >
                             Next stay
                         </p>
                         <h2 class="mt-1 font-serif text-2xl text-[#1a2744]">
@@ -253,7 +275,7 @@ const daysUntil = (iso: string) => {
                                 <Hotel class="size-12" />
                             </div>
                             <span
-                                class="absolute left-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-[#1a2744] shadow"
+                                class="absolute top-4 left-4 inline-flex items-center gap-1 rounded-full bg-white/95 px-3 py-1 text-xs font-medium text-[#1a2744] shadow"
                             >
                                 <CalendarDays class="size-3" />
                                 {{ daysUntil(nextStay.data.check_in) }}
@@ -262,10 +284,14 @@ const daysUntil = (iso: string) => {
                         <div class="p-6">
                             <div class="flex items-start justify-between gap-4">
                                 <div>
-                                    <p class="text-xs uppercase tracking-wider text-slate-400">
+                                    <p
+                                        class="text-xs tracking-wider text-slate-400 uppercase"
+                                    >
                                         {{ nextStay.data.room?.type_label }}
                                     </p>
-                                    <h3 class="mt-1 font-serif text-2xl text-[#1a2744]">
+                                    <h3
+                                        class="mt-1 font-serif text-2xl text-[#1a2744]"
+                                    >
                                         {{ nextStay.data.room?.name }}
                                     </h3>
                                 </div>
@@ -277,7 +303,9 @@ const daysUntil = (iso: string) => {
 
                             <dl class="mt-5 grid gap-4 sm:grid-cols-2">
                                 <div>
-                                    <dt class="text-xs uppercase tracking-wider text-slate-400">
+                                    <dt
+                                        class="text-xs tracking-wider text-slate-400 uppercase"
+                                    >
                                         Check-in
                                     </dt>
                                     <dd class="mt-1 text-sm text-slate-700">
@@ -285,15 +313,21 @@ const daysUntil = (iso: string) => {
                                     </dd>
                                 </div>
                                 <div>
-                                    <dt class="text-xs uppercase tracking-wider text-slate-400">
+                                    <dt
+                                        class="text-xs tracking-wider text-slate-400 uppercase"
+                                    >
                                         Check-out
                                     </dt>
                                     <dd class="mt-1 text-sm text-slate-700">
-                                        {{ formatDate(nextStay.data.check_out) }}
+                                        {{
+                                            formatDate(nextStay.data.check_out)
+                                        }}
                                     </dd>
                                 </div>
                                 <div>
-                                    <dt class="text-xs uppercase tracking-wider text-slate-400">
+                                    <dt
+                                        class="text-xs tracking-wider text-slate-400 uppercase"
+                                    >
                                         Nights
                                     </dt>
                                     <dd class="mt-1 text-sm text-slate-700">
@@ -301,26 +335,44 @@ const daysUntil = (iso: string) => {
                                     </dd>
                                 </div>
                                 <div>
-                                    <dt class="text-xs uppercase tracking-wider text-slate-400">
+                                    <dt
+                                        class="text-xs tracking-wider text-slate-400 uppercase"
+                                    >
                                         Total
                                     </dt>
-                                    <dd class="mt-1 font-serif text-base text-[#1a2744]">
-                                        {{ formatPrice(nextStay.data.total_price) }}
+                                    <dd
+                                        class="mt-1 font-serif text-base text-[#1a2744]"
+                                    >
+                                        {{
+                                            formatPrice(
+                                                nextStay.data.total_price,
+                                            )
+                                        }}
                                     </dd>
                                 </div>
                             </dl>
 
                             <div class="mt-6 flex flex-wrap items-center gap-3">
                                 <Link
-                                    :href="bookingShow({ booking: nextStay.data.reference }).url"
+                                    :href="
+                                        bookingShow({
+                                            booking: nextStay.data.reference,
+                                        }).url
+                                    "
                                     class="group inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#1a2744] px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#243558]"
                                 >
                                     View reservation
-                                    <ArrowRight class="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                                    <ArrowRight
+                                        class="size-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                                    />
                                 </Link>
                                 <Link
                                     v-if="nextStay.data.room"
-                                    :href="roomShow({ slug: nextStay.data.room.slug }).url"
+                                    :href="
+                                        roomShow({
+                                            slug: nextStay.data.room.slug,
+                                        }).url
+                                    "
                                     class="text-sm text-[#1a2744] underline-offset-4 hover:underline"
                                 >
                                     Room details
@@ -359,10 +411,14 @@ const daysUntil = (iso: string) => {
             <aside>
                 <div class="flex items-end justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                        <p
+                            class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                        >
                             Activity
                         </p>
-                        <h2 class="mt-1 font-serif text-2xl text-[#1a2744]">Recent</h2>
+                        <h2 class="mt-1 font-serif text-2xl text-[#1a2744]">
+                            Recent
+                        </h2>
                     </div>
                     <Link
                         :href="bookingsIndex().url"
@@ -393,7 +449,9 @@ const daysUntil = (iso: string) => {
                             <Hotel class="size-4" />
                         </span>
                         <div class="min-w-0 flex-1">
-                            <p class="truncate text-sm font-medium text-slate-800">
+                            <p
+                                class="truncate text-sm font-medium text-slate-800"
+                            >
                                 {{ booking.room?.name ?? 'Room removed' }}
                             </p>
                             <p class="text-xs text-slate-500">
@@ -402,7 +460,7 @@ const daysUntil = (iso: string) => {
                             </p>
                         </div>
                         <StatusBadge
-                            :status="(booking.status as BookingStatus)"
+                            :status="booking.status as BookingStatus"
                             :label="booking.status_label"
                         />
                     </Link>
@@ -411,13 +469,13 @@ const daysUntil = (iso: string) => {
         </section>
 
         <!-- Featured rooms + tips -->
-        <section
-            class="animate-fade-up-delayed-3 grid gap-6 lg:grid-cols-3"
-        >
+        <section class="animate-fade-up-delayed-3 grid gap-6 lg:grid-cols-3">
             <div class="lg:col-span-2">
                 <div class="flex items-end justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                        <p
+                            class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                        >
                             Inspiration
                         </p>
                         <h2 class="mt-1 font-serif text-2xl text-[#1a2744]">
@@ -454,31 +512,42 @@ const daysUntil = (iso: string) => {
                             </div>
                         </div>
                         <div class="p-4">
-                            <p class="text-xs uppercase tracking-wider text-slate-400">
+                            <p
+                                class="text-xs tracking-wider text-slate-400 uppercase"
+                            >
                                 {{ room.type_label }}
                             </p>
-                            <h3 class="mt-1 font-serif text-base text-[#1a2744]">
+                            <h3
+                                class="mt-1 font-serif text-base text-[#1a2744]"
+                            >
                                 {{ room.name }}
                             </h3>
                             <p class="mt-2 text-sm text-slate-600">
                                 {{ formatPrice(room.price_per_night) }}
-                                <span class="text-xs text-slate-400">/ night</span>
+                                <span class="text-xs text-slate-400"
+                                    >/ night</span
+                                >
                             </p>
                         </div>
                     </Link>
                 </div>
             </div>
 
-            <aside class="rounded-2xl border border-[#c9a84c]/30 bg-gradient-to-br from-[#fdf8ec] to-[#f8f1dc] p-6">
+            <aside
+                class="rounded-2xl border border-[#c9a84c]/30 bg-gradient-to-br from-[#fdf8ec] to-[#f8f1dc] p-6"
+            >
                 <span
                     class="inline-flex size-9 items-center justify-center rounded-lg bg-[#1a2744] text-[#c9a84c]"
                 >
                     <MessageSquare class="size-4" />
                 </span>
-                <h3 class="mt-4 font-serif text-xl text-[#1a2744]">Concierge tip</h3>
+                <h3 class="mt-4 font-serif text-xl text-[#1a2744]">
+                    Concierge tip
+                </h3>
                 <p class="mt-2 text-sm leading-relaxed text-slate-700">
-                    Reservations confirmed at least seven days in advance unlock our
-                    welcome amenity — fresh flowers in your suite on arrival.
+                    Reservations confirmed at least seven days in advance unlock
+                    our welcome amenity — fresh flowers in your suite on
+                    arrival.
                 </p>
                 <p class="mt-4 text-xs text-slate-500">
                     Need help with anything? Reach the concierge any time at
@@ -486,8 +555,8 @@ const daysUntil = (iso: string) => {
                         href="mailto:concierge@aurelia.example"
                         class="font-medium text-[#1a2744] underline underline-offset-4 hover:text-[#c9a84c]"
                     >
-                        concierge@aurelia.example
-                    </a>.
+                        concierge@aurelia.example </a
+                    >.
                 </p>
             </aside>
         </section>

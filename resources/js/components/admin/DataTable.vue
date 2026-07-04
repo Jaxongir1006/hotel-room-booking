@@ -19,7 +19,9 @@ defineProps<{
     <div class="overflow-hidden rounded-xl border border-slate-200 bg-white">
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-slate-100 text-sm">
-                <thead class="bg-slate-50/60 text-xs uppercase tracking-wider text-slate-500">
+                <thead
+                    class="bg-slate-50/60 text-xs tracking-wider text-slate-500 uppercase"
+                >
                     <tr>
                         <th
                             v-for="column in columns"
@@ -27,11 +29,17 @@ defineProps<{
                             scope="col"
                             class="px-4 py-3 font-medium"
                             :class="{
-                                'text-left': column.align !== 'right' && column.align !== 'center',
+                                'text-left':
+                                    column.align !== 'right' &&
+                                    column.align !== 'center',
                                 'text-right': column.align === 'right',
                                 'text-center': column.align === 'center',
                             }"
-                            :style="column.width ? { width: column.width } : undefined"
+                            :style="
+                                column.width
+                                    ? { width: column.width }
+                                    : undefined
+                            "
                         >
                             {{ column.label }}
                         </th>

@@ -98,25 +98,31 @@ const columns = [
 
     <div class="space-y-5 p-4 md:p-6">
         <header>
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Members
             </p>
             <h1 class="mt-1 font-serif text-3xl text-[#1a2744]">Users</h1>
         </header>
 
-        <div class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr]">
+        <div
+            class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr]"
+        >
             <label class="relative">
-                <Search class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <Search
+                    class="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+                />
                 <input
                     v-model="search"
                     type="search"
                     placeholder="Search by name or email…"
-                    class="w-full rounded-md border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="w-full rounded-md border border-slate-200 bg-white py-2 pr-3 pl-9 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                 />
             </label>
             <select
                 v-model="role"
-                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
             >
                 <option value="">All roles</option>
                 <option v-for="r in roles" :key="r.value" :value="r.value">
@@ -147,10 +153,15 @@ const columns = [
             </template>
             <template #cell-role="{ row }">
                 <select
-                    class="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c] disabled:opacity-60"
+                    class="rounded-md border border-slate-200 bg-white px-2 py-1 text-xs focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none disabled:opacity-60"
                     :value="row.role"
                     :disabled="updating === row.id"
-                    @change="updateRole(row, ($event.target as HTMLSelectElement).value)"
+                    @change="
+                        updateRole(
+                            row,
+                            ($event.target as HTMLSelectElement).value,
+                        )
+                    "
                 >
                     <option v-for="r in roles" :key="r.value" :value="r.value">
                         {{ r.label }}
@@ -158,7 +169,9 @@ const columns = [
                 </select>
             </template>
             <template #cell-created_at="{ row }">
-                <span class="text-xs text-slate-500">{{ formatDate(row.created_at) }}</span>
+                <span class="text-xs text-slate-500">{{
+                    formatDate(row.created_at)
+                }}</span>
             </template>
         </DataTable>
 

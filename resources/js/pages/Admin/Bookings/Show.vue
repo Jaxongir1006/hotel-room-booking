@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { Head, Link, router } from '@inertiajs/vue3';
-import { ArrowLeft, CalendarDays, Loader2, MessageSquare, Star } from 'lucide-vue-next';
+import {
+    ArrowLeft,
+    CalendarDays,
+    Loader2,
+    MessageSquare,
+    Star,
+} from 'lucide-vue-next';
 import StatusBadge from '@/components/bookings/StatusBadge.vue';
 import {
     index as adminBookingsIndex,
@@ -75,43 +81,69 @@ const formatDate = (iso: string) =>
         <div class="rounded-xl border border-slate-200 bg-white p-6">
             <div class="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                    <p
+                        class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                    >
                         Reservation
                     </p>
                     <h1 class="mt-1 font-serif text-2xl text-[#1a2744]">
                         {{ booking.reference }}
                     </h1>
                 </div>
-                <StatusBadge :status="booking.status" :label="booking.status_label" />
+                <StatusBadge
+                    :status="booking.status"
+                    :label="booking.status_label"
+                />
             </div>
 
             <dl class="mt-6 grid gap-4 sm:grid-cols-2">
                 <div>
-                    <dt class="text-xs uppercase tracking-wider text-slate-400">Guest</dt>
-                    <dd class="mt-1 text-sm text-slate-800">{{ booking.user?.name }}</dd>
-                    <dd class="text-xs text-slate-400">{{ booking.user?.email }}</dd>
+                    <dt class="text-xs tracking-wider text-slate-400 uppercase">
+                        Guest
+                    </dt>
+                    <dd class="mt-1 text-sm text-slate-800">
+                        {{ booking.user?.name }}
+                    </dd>
+                    <dd class="text-xs text-slate-400">
+                        {{ booking.user?.email }}
+                    </dd>
                 </div>
                 <div>
-                    <dt class="text-xs uppercase tracking-wider text-slate-400">Room</dt>
-                    <dd class="mt-1 text-sm text-slate-800">{{ booking.room?.name }}</dd>
-                    <dd class="text-xs text-slate-400">{{ booking.room?.type_label }}</dd>
+                    <dt class="text-xs tracking-wider text-slate-400 uppercase">
+                        Room
+                    </dt>
+                    <dd class="mt-1 text-sm text-slate-800">
+                        {{ booking.room?.name }}
+                    </dd>
+                    <dd class="text-xs text-slate-400">
+                        {{ booking.room?.type_label }}
+                    </dd>
                 </div>
                 <div>
-                    <dt class="text-xs uppercase tracking-wider text-slate-400">Stay</dt>
-                    <dd class="mt-1 flex items-center gap-2 text-sm text-slate-700">
+                    <dt class="text-xs tracking-wider text-slate-400 uppercase">
+                        Stay
+                    </dt>
+                    <dd
+                        class="mt-1 flex items-center gap-2 text-sm text-slate-700"
+                    >
                         <CalendarDays class="size-4 text-slate-400" />
                         {{ formatDate(booking.check_in) }}
                     </dd>
-                    <dd class="mt-1 flex items-center gap-2 text-sm text-slate-700">
+                    <dd
+                        class="mt-1 flex items-center gap-2 text-sm text-slate-700"
+                    >
                         <CalendarDays class="size-4 text-slate-400" />
                         {{ formatDate(booking.check_out) }}
                     </dd>
                     <dd class="mt-1 text-xs text-slate-400">
-                        {{ booking.nights }} {{ booking.nights === 1 ? 'night' : 'nights' }}
+                        {{ booking.nights }}
+                        {{ booking.nights === 1 ? 'night' : 'nights' }}
                     </dd>
                 </div>
                 <div>
-                    <dt class="text-xs uppercase tracking-wider text-slate-400">Total</dt>
+                    <dt class="text-xs tracking-wider text-slate-400 uppercase">
+                        Total
+                    </dt>
                     <dd class="mt-1 font-serif text-xl text-[#1a2744]">
                         {{ formatPrice(booking.total_price) }}
                     </dd>
@@ -122,7 +154,9 @@ const formatDate = (iso: string) =>
                 v-if="booking.notes"
                 class="mt-6 rounded-lg bg-slate-50 p-4 text-sm text-slate-600"
             >
-                <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-slate-400">
+                <p
+                    class="flex items-center gap-2 text-xs tracking-wider text-slate-400 uppercase"
+                >
                     <MessageSquare class="size-3.5" />
                     Guest note
                 </p>
@@ -131,14 +165,18 @@ const formatDate = (iso: string) =>
         </div>
 
         <div class="rounded-xl border border-slate-200 bg-white p-6">
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Manage
             </p>
-            <h2 class="mt-1 font-serif text-xl text-[#1a2744]">Update status</h2>
+            <h2 class="mt-1 font-serif text-xl text-[#1a2744]">
+                Update status
+            </h2>
             <div class="mt-4 flex flex-wrap items-center gap-3">
                 <select
                     v-model="selectedStatus"
-                    class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                 >
                     <option
                         v-for="s in statuses"
@@ -159,7 +197,8 @@ const formatDate = (iso: string) =>
                 </button>
             </div>
             <p class="mt-3 text-xs text-slate-400">
-                Marking a booking as Confirmed will queue an invoice email to the guest.
+                Marking a booking as Confirmed will queue an invoice email to
+                the guest.
             </p>
         </div>
 
@@ -167,7 +206,9 @@ const formatDate = (iso: string) =>
             v-if="booking.review"
             class="rounded-xl border border-slate-200 bg-white p-6"
         >
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Guest review
             </p>
             <div class="mt-2 flex items-center gap-2">
@@ -187,7 +228,7 @@ const formatDate = (iso: string) =>
             </div>
             <p
                 v-if="booking.review.comment"
-                class="mt-3 whitespace-pre-line text-sm text-slate-600"
+                class="mt-3 text-sm whitespace-pre-line text-slate-600"
             >
                 {{ booking.review.comment }}
             </p>

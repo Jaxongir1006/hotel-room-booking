@@ -58,20 +58,28 @@ const adminNav: NavItem[] = [
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton size="lg" as-child class="cursor-pointer">
+                    <SidebarMenuButton
+                        size="lg"
+                        as-child
+                        class="cursor-pointer"
+                    >
                         <Link :href="home().url" class="group">
                             <div
                                 class="flex aspect-square size-9 items-center justify-center rounded-md bg-[#c9a84c] text-[#1a2744] shadow-sm transition-transform duration-200 group-hover:rotate-3"
                             >
                                 <Hotel class="size-5" />
                             </div>
-                            <div class="ml-1 grid flex-1 text-left text-sm leading-tight">
+                            <div
+                                class="ml-1 grid flex-1 text-left text-sm leading-tight"
+                            >
                                 <span
                                     class="truncate font-serif text-base text-sidebar-foreground"
                                 >
                                     Aurelia Stay
                                 </span>
-                                <span class="truncate text-[10px] uppercase tracking-[0.18em] text-[#c9a84c]">
+                                <span
+                                    class="truncate text-[10px] tracking-[0.18em] text-[#c9a84c] uppercase"
+                                >
                                     Concierge
                                 </span>
                             </div>
@@ -84,7 +92,7 @@ const adminNav: NavItem[] = [
         <SidebarContent>
             <SidebarGroup class="px-2 py-0">
                 <SidebarGroupLabel
-                    class="text-[10px] uppercase tracking-[0.2em] text-sidebar-foreground/50"
+                    class="text-[10px] tracking-[0.2em] text-sidebar-foreground/50 uppercase"
                 >
                     Stays
                 </SidebarGroupLabel>
@@ -112,7 +120,7 @@ const adminNav: NavItem[] = [
 
             <SidebarGroup v-if="isAdmin" class="px-2 py-0">
                 <SidebarGroupLabel
-                    class="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.2em] text-[#c9a84c]"
+                    class="flex items-center gap-1.5 text-[10px] tracking-[0.2em] text-[#c9a84c] uppercase"
                 >
                     <Sparkles class="size-3" />
                     Administration

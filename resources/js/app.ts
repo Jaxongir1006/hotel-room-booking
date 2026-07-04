@@ -42,7 +42,9 @@ initializeFlashToast();
 if (typeof window !== 'undefined' && import.meta.env.DEV) {
     window.addEventListener('unhandledrejection', (event) => {
         const message = (event.reason as Error | undefined)?.message ?? '';
-        if (message.includes("Cannot read properties of null (reading 'type')")) {
+        if (
+            message.includes("Cannot read properties of null (reading 'type')")
+        ) {
             event.preventDefault();
         }
     });

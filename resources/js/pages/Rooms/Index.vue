@@ -5,7 +5,12 @@ import { Search, SlidersHorizontal } from 'lucide-vue-next';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import RoomCard from '@/components/rooms/RoomCard.vue';
 import { index as roomsIndex } from '@/routes/rooms';
-import type { Paginated, RoomFilters, RoomSummary, RoomTypeOption } from '@/types';
+import type {
+    Paginated,
+    RoomFilters,
+    RoomSummary,
+    RoomTypeOption,
+} from '@/types';
 
 const props = defineProps<{
     rooms: Paginated<RoomSummary>;
@@ -73,56 +78,73 @@ watch(
 
     <GuestLayout>
         <section class="border-b border-slate-200 bg-white">
-            <div class="animate-fade-up mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <div
+                class="animate-fade-up mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
+            >
+                <p
+                    class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                >
                     Our rooms
                 </p>
                 <h1 class="mt-2 font-serif text-3xl text-[#1a2744] md:text-4xl">
                     Find your perfect retreat
                 </h1>
                 <p class="mt-3 max-w-2xl text-sm text-slate-500">
-                    Browse the full collection. Refine by type, price, capacity, and more.
+                    Browse the full collection. Refine by type, price, capacity,
+                    and more.
                 </p>
             </div>
         </section>
 
-        <div class="animate-fade-up-delayed-1 mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8">
+        <div
+            class="animate-fade-up-delayed-1 mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8"
+        >
             <!-- Filters sidebar -->
             <aside class="space-y-6">
                 <div class="rounded-xl border border-slate-200 bg-white p-5">
-                    <div class="flex items-center gap-2 text-sm font-medium text-[#1a2744]">
+                    <div
+                        class="flex items-center gap-2 text-sm font-medium text-[#1a2744]"
+                    >
                         <SlidersHorizontal class="size-4" />
                         Filters
                     </div>
 
                     <form @submit.prevent="apply" class="mt-5 space-y-5">
                         <label class="block">
-                            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                            <span
+                                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                            >
                                 Search
                             </span>
                             <div class="relative mt-1">
                                 <Search
-                                    class="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400"
+                                    class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
                                 />
                                 <input
                                     v-model="local.q"
                                     type="search"
                                     placeholder="Suite name…"
-                                    class="w-full rounded-md border border-slate-200 py-2 pl-9 pr-3 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                                    class="w-full rounded-md border border-slate-200 py-2 pr-3 pl-9 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 />
                             </div>
                         </label>
 
                         <label class="block">
-                            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                            <span
+                                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                            >
                                 Room type
                             </span>
                             <select
                                 v-model="local.type"
-                                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                             >
                                 <option value="">Any</option>
-                                <option v-for="opt in roomTypes" :key="opt.value" :value="opt.value">
+                                <option
+                                    v-for="opt in roomTypes"
+                                    :key="opt.value"
+                                    :value="opt.value"
+                                >
                                     {{ opt.label }}
                                 </option>
                             </select>
@@ -130,7 +152,9 @@ watch(
 
                         <div class="grid grid-cols-2 gap-3">
                             <label class="block">
-                                <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                                <span
+                                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                >
                                     Min $
                                 </span>
                                 <input
@@ -138,11 +162,13 @@ watch(
                                     type="number"
                                     min="0"
                                     placeholder="0"
-                                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 />
                             </label>
                             <label class="block">
-                                <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                                <span
+                                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                >
                                     Max $
                                 </span>
                                 <input
@@ -150,13 +176,15 @@ watch(
                                     type="number"
                                     min="0"
                                     placeholder="1000"
-                                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 />
                             </label>
                         </div>
 
                         <label class="block">
-                            <span class="text-xs font-medium uppercase tracking-wider text-slate-500">
+                            <span
+                                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                            >
                                 Min capacity
                             </span>
                             <input
@@ -165,7 +193,7 @@ watch(
                                 min="1"
                                 max="10"
                                 placeholder="2"
-                                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                             />
                         </label>
 
@@ -192,19 +220,27 @@ watch(
             <div>
                 <div class="flex flex-wrap items-center justify-between gap-3">
                     <p class="text-sm text-slate-500">
-                        <span class="font-medium text-[#1a2744]">{{ rooms.meta.total }}</span>
+                        <span class="font-medium text-[#1a2744]">{{
+                            rooms.meta.total
+                        }}</span>
                         rooms available
                     </p>
-                    <label class="flex items-center gap-2 text-sm text-slate-500">
+                    <label
+                        class="flex items-center gap-2 text-sm text-slate-500"
+                    >
                         Sort:
                         <select
                             v-model="local.sort"
                             @change="apply"
-                            class="rounded-md border border-slate-200 px-2 py-1.5 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                            class="rounded-md border border-slate-200 px-2 py-1.5 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                         >
                             <option value="newest">Newest</option>
-                            <option value="price_asc">Price (low → high)</option>
-                            <option value="price_desc">Price (high → low)</option>
+                            <option value="price_asc">
+                                Price (low → high)
+                            </option>
+                            <option value="price_desc">
+                                Price (high → low)
+                            </option>
                             <option value="rating">Top rated</option>
                         </select>
                     </label>
@@ -247,7 +283,10 @@ watch(
                     v-if="rooms.meta.last_page > 1"
                     class="mt-10 flex flex-wrap items-center justify-center gap-1"
                 >
-                    <template v-for="link in rooms.meta.links" :key="link.label">
+                    <template
+                        v-for="link in rooms.meta.links"
+                        :key="link.label"
+                    >
                         <Link
                             v-if="link.url"
                             :href="link.url"

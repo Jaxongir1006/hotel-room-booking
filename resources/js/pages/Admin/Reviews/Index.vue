@@ -20,7 +20,12 @@ type AdminReviewRow = {
     created_at: string | null;
     guest_name: string | null;
     guest_email: string | null;
-    room: { id: number; name: string; slug: string; thumbnail: string | null } | null;
+    room: {
+        id: number;
+        name: string;
+        slug: string;
+        thumbnail: string | null;
+    } | null;
     booking_reference: string | null;
 };
 
@@ -39,7 +44,9 @@ defineOptions({
 });
 
 const search = ref(props.filters.q ?? '');
-const rating = ref<string>(props.filters.rating ? String(props.filters.rating) : '');
+const rating = ref<string>(
+    props.filters.rating ? String(props.filters.rating) : '',
+);
 
 const apply = debounce(() => {
     router.get(
@@ -100,28 +107,38 @@ const columns = [
 
     <div class="space-y-5 p-4 md:p-6">
         <header>
-            <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+            <p
+                class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+            >
                 Feedback
             </p>
             <h1 class="mt-1 font-serif text-3xl text-[#1a2744]">Reviews</h1>
         </header>
 
-        <div class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr]">
+        <div
+            class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr]"
+        >
             <label class="relative">
-                <Search class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <Search
+                    class="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+                />
                 <input
                     v-model="search"
                     type="search"
                     placeholder="Search by guest, room, comment…"
-                    class="w-full rounded-md border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="w-full rounded-md border border-slate-200 bg-white py-2 pr-3 pl-9 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                 />
             </label>
             <select
                 v-model="rating"
-                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
             >
                 <option value="">All ratings</option>
-                <option v-for="r in [5, 4, 3, 2, 1]" :key="r" :value="String(r)">
+                <option
+                    v-for="r in [5, 4, 3, 2, 1]"
+                    :key="r"
+                    :value="String(r)"
+                >
                     {{ r }} stars
                 </option>
             </select>
@@ -135,7 +152,9 @@ const columns = [
         >
             <template #cell-guest="{ row }">
                 <div>
-                    <p class="font-medium text-slate-800">{{ row.guest_name ?? '—' }}</p>
+                    <p class="font-medium text-slate-800">
+                        {{ row.guest_name ?? '—' }}
+                    </p>
                     <p class="text-xs text-slate-400">{{ row.guest_email }}</p>
                 </div>
             </template>
@@ -169,7 +188,9 @@ const columns = [
                 </p>
             </template>
             <template #cell-created_at="{ row }">
-                <span class="text-xs text-slate-500">{{ formatDate(row.created_at) }}</span>
+                <span class="text-xs text-slate-500">{{
+                    formatDate(row.created_at)
+                }}</span>
             </template>
             <template #cell-actions="{ row }">
                 <button

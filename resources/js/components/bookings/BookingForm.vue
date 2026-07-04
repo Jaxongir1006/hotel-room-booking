@@ -79,7 +79,9 @@ const submit = () => {
     <form @submit.prevent="submit" class="space-y-5">
         <div class="grid grid-cols-2 gap-3">
             <label class="block">
-                <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
+                <span
+                    class="text-[11px] font-medium tracking-[0.18em] text-slate-500 uppercase"
+                >
                     Check-in
                 </span>
                 <input
@@ -87,11 +89,13 @@ const submit = () => {
                     type="date"
                     :min="minCheckIn"
                     required
-                    class="mt-1.5 w-full rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:outline-none focus:ring-2 focus:ring-[#c9a84c]/40"
+                    class="mt-1.5 w-full rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/40 focus:outline-none"
                 />
             </label>
             <label class="block">
-                <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
+                <span
+                    class="text-[11px] font-medium tracking-[0.18em] text-slate-500 uppercase"
+                >
                     Check-out
                 </span>
                 <input
@@ -99,7 +103,7 @@ const submit = () => {
                     type="date"
                     :min="minCheckOut"
                     required
-                    class="mt-1.5 w-full rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:outline-none focus:ring-2 focus:ring-[#c9a84c]/40"
+                    class="mt-1.5 w-full rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/40 focus:outline-none"
                 />
             </label>
         </div>
@@ -116,12 +120,15 @@ const submit = () => {
                 v-if="overlapsUnavailable"
                 class="rounded-md border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700"
             >
-                Some dates in your range are already reserved. Please pick a different window.
+                Some dates in your range are already reserved. Please pick a
+                different window.
             </p>
         </Transition>
 
         <label class="block">
-            <span class="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500">
+            <span
+                class="text-[11px] font-medium tracking-[0.18em] text-slate-500 uppercase"
+            >
                 Notes for the concierge (optional)
             </span>
             <textarea
@@ -129,7 +136,7 @@ const submit = () => {
                 rows="3"
                 maxlength="500"
                 placeholder="Special requests, arrival time…"
-                class="mt-1.5 w-full resize-none rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:outline-none focus:ring-2 focus:ring-[#c9a84c]/40"
+                class="mt-1.5 w-full resize-none rounded-md border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 shadow-sm transition-colors duration-200 focus:border-[#c9a84c] focus:ring-2 focus:ring-[#c9a84c]/40 focus:outline-none"
             />
         </label>
 
@@ -139,9 +146,12 @@ const submit = () => {
             <div class="flex items-center justify-between text-slate-600">
                 <span class="flex items-center gap-2">
                     <CalendarRange class="size-4 text-[#8a6d20]" />
-                    {{ formatPrice(pricePerNight) }} × {{ nights }} {{ nights === 1 ? 'night' : 'nights' }}
+                    {{ formatPrice(pricePerNight) }} × {{ nights }}
+                    {{ nights === 1 ? 'night' : 'nights' }}
                 </span>
-                <span class="font-medium text-slate-700">{{ formatPrice(total) }}</span>
+                <span class="font-medium text-slate-700">{{
+                    formatPrice(total)
+                }}</span>
             </div>
             <div
                 class="mt-3 flex items-center justify-between border-t border-[#c9a84c]/30 pt-3 text-base font-medium text-[#1a2744]"

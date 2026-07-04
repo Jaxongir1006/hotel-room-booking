@@ -109,7 +109,9 @@ const confirmDelete = () => {
     <div class="space-y-5 p-4 md:p-6">
         <header class="flex flex-wrap items-end justify-between gap-3">
             <div>
-                <p class="text-xs font-semibold uppercase tracking-widest text-[#c9a84c]">
+                <p
+                    class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                >
                     Inventory
                 </p>
                 <h1 class="mt-1 font-serif text-3xl text-[#1a2744]">Rooms</h1>
@@ -123,31 +125,43 @@ const confirmDelete = () => {
             </Link>
         </header>
 
-        <div class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr_1fr]">
+        <div
+            class="grid gap-3 rounded-xl border border-slate-200 bg-white p-4 sm:grid-cols-[2fr_1fr_1fr]"
+        >
             <label class="relative">
-                <Search class="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-slate-400" />
+                <Search
+                    class="absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+                />
                 <input
                     v-model="search"
                     type="search"
                     placeholder="Search by name…"
-                    class="w-full rounded-md border border-slate-200 bg-white py-2 pl-9 pr-3 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                    class="w-full rounded-md border border-slate-200 bg-white py-2 pr-3 pl-9 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                 />
             </label>
             <select
                 v-model="status"
-                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
             >
                 <option value="">All statuses</option>
-                <option v-for="s in options.statuses" :key="s.value" :value="s.value">
+                <option
+                    v-for="s in options.statuses"
+                    :key="s.value"
+                    :value="s.value"
+                >
                     {{ s.label }}
                 </option>
             </select>
             <select
                 v-model="type"
-                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:outline-none focus:ring-1 focus:ring-[#c9a84c]"
+                class="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
             >
                 <option value="">All types</option>
-                <option v-for="t in options.types" :key="t.value" :value="t.value">
+                <option
+                    v-for="t in options.types"
+                    :key="t.value"
+                    :value="t.value"
+                >
                     {{ t.label }}
                 </option>
             </select>
@@ -175,7 +189,9 @@ const confirmDelete = () => {
                     </div>
                     <div>
                         <p class="font-medium text-slate-800">{{ row.name }}</p>
-                        <p class="text-xs text-slate-400">Floor {{ row.floor }}</p>
+                        <p class="text-xs text-slate-400">
+                            Floor {{ row.floor }}
+                        </p>
                     </div>
                 </div>
             </template>
@@ -218,7 +234,8 @@ const confirmDelete = () => {
         </DataTable>
 
         <p class="text-xs text-slate-400">
-            Showing {{ rooms.meta.from ?? 0 }}–{{ rooms.meta.to ?? 0 }} of {{ rooms.meta.total }} rooms.
+            Showing {{ rooms.meta.from ?? 0 }}–{{ rooms.meta.to ?? 0 }} of
+            {{ rooms.meta.total }} rooms.
         </p>
 
         <ConfirmModal

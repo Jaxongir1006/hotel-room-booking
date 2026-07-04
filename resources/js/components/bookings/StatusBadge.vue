@@ -9,15 +9,23 @@ const props = defineProps<{
 
 const classes = computed(() => {
     const map: Record<BookingStatus, string> = {
-        pending: 'bg-amber-50 text-amber-800 ring-amber-200 [--dot:theme(colors.amber.500)]',
-        confirmed: 'bg-emerald-50 text-emerald-800 ring-emerald-200 [--dot:theme(colors.emerald.500)]',
-        cancelled: 'bg-rose-50 text-rose-800 ring-rose-200 [--dot:theme(colors.rose.500)]',
-        completed: 'bg-sky-50 text-sky-800 ring-sky-200 [--dot:theme(colors.sky.500)]',
+        pending:
+            'bg-amber-50 text-amber-800 ring-amber-200 [--dot:theme(colors.amber.500)]',
+        confirmed:
+            'bg-emerald-50 text-emerald-800 ring-emerald-200 [--dot:theme(colors.emerald.500)]',
+        cancelled:
+            'bg-rose-50 text-rose-800 ring-rose-200 [--dot:theme(colors.rose.500)]',
+        completed:
+            'bg-sky-50 text-sky-800 ring-sky-200 [--dot:theme(colors.sky.500)]',
     };
     return map[props.status];
 });
 
-const text = computed(() => props.label ?? props.status.charAt(0).toUpperCase() + props.status.slice(1));
+const text = computed(
+    () =>
+        props.label ??
+        props.status.charAt(0).toUpperCase() + props.status.slice(1),
+);
 </script>
 
 <template>
