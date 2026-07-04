@@ -12,6 +12,10 @@ class RoomSeeder extends Seeder
 {
     public function run(): void
     {
+        if (Room::count() > 0) {
+            return;
+        }
+
         $distribution = [
             [RoomType::Single, 5],
             [RoomType::Double, 7],

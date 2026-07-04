@@ -14,6 +14,10 @@ class BookingSeeder extends Seeder
 {
     public function run(): void
     {
+        if (Booking::count() > 0) {
+            return;
+        }
+
         $guests = User::where('role', UserRole::Guest)->get();
         $rooms = Room::all();
 
