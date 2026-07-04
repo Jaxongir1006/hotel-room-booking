@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { ArrowRight, ShieldCheck, Sparkles, Star, Wifi } from 'lucide-vue-next';
+import { reactive } from 'vue';
 import GuestLayout from '@/layouts/GuestLayout.vue';
 import RoomCard from '@/components/rooms/RoomCard.vue';
 import { index as roomsIndex } from '@/routes/rooms';
@@ -17,6 +18,28 @@ const {
     transformStyle: heroCardTransform,
     transitionStyle: heroCardTransition,
 } = useThreeDTilt({ max: 10, scale: 1.02 });
+
+const {
+    targetEl: searchBarEl,
+    transformStyle: searchBarTransform,
+    transitionStyle: searchBarTransition,
+} = useThreeDTilt({ max: 4, scale: 1.01 });
+
+const searchForm = reactive({
+    q: '',
+    type: '',
+});
+
+const handleSearch = () => {
+    const params: Record<string, string> = {};
+    if (searchForm.q) {
+        params.q = searchForm.q;
+    }
+    if (searchForm.type) {
+        params.type = searchForm.type;
+    }
+    router.get(roomsIndex().url, params);
+};
 
 const testimonials = [
     {
@@ -43,6 +66,14 @@ const testimonials = [
     <GuestLayout>
         <!-- 3D Parallax Hero Section -->
         <section class="relative overflow-hidden bg-[#1a2744] text-white">
+            <!-- Floating 3D Ornaments -->
+            <div
+                class="pointer-events-none absolute top-12 left-10 size-48 animate-[pulse_6s_infinite] rounded-full bg-gradient-to-tr from-[#c9a84c]/20 to-transparent blur-2xl"
+            />
+            <div
+                class="pointer-events-none absolute right-1/3 bottom-24 size-64 animate-[pulse_8s_infinite] rounded-full bg-gradient-to-bl from-[#c9a84c]/10 to-transparent blur-3xl"
+            />
+
             <div
                 aria-hidden="true"
                 class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=2000&q=80')] bg-cover bg-center opacity-20"
@@ -198,6 +229,87 @@ const testimonials = [
                 </div>
             </div>
         </section>
+
+        <!-- 3D Floating Quick Search Bar -->
+        <div
+            class="relative z-20 mx-auto -mt-10 max-w-5xl px-4 pb-12 sm:px-6 lg:px-8"
+        >
+            <div
+                ref="searchBarEl"
+                :style="{
+                    transform: searchBarTransform,
+                    transition: searchBarTransition,
+                }"
+                class="w-full rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-md transition-all duration-200"
+            >
+                <form
+                    @submit.prevent="handleSearch"
+                    class="grid items-end gap-4 md:grid-cols-4"
+                >
+                    <div>
+                        <label
+                            class="mb-2 block text-xs font-semibold tracking-wider text-slate-300 uppercase"
+                            >Search Keyword</label
+                        >
+                        <input
+                            v-model="searchForm.q"
+                            type="text"
+                            placeholder="e.g. Penthouse, Suite..."
+                            class="w-full rounded-lg border border-white/10 bg-white/10 px-4 py-2.5 text-sm text-white placeholder-slate-400 transition-all duration-200 focus:border-[#c9a84c] focus:bg-white/20 focus:outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label
+                            class="mb-2 block text-xs font-semibold tracking-wider text-slate-300 uppercase"
+                            >Room Type</label
+                        >
+                        <div class="relative">
+                            <select
+                                v-model="searchForm.type"
+                                class="w-full appearance-none rounded-lg border border-white/10 bg-white/10 px-4 py-2.5 text-sm text-white transition-all duration-200 focus:border-[#c9a84c] focus:bg-white/20 focus:outline-none"
+                            >
+                                <option value="" class="bg-[#1a2744]">
+                                    Any Type
+                                </option>
+                                <option value="single" class="bg-[#1a2744]">
+                                    Single Room
+                                </option>
+                                <option value="double" class="bg-[#1a2744]">
+                                    Double Room
+                                </option>
+                                <option value="suite" class="bg-[#1a2744]">
+                                    Luxury Suite
+                                </option>
+                                <option value="deluxe" class="bg-[#1a2744]">
+                                    Deluxe Room
+                                </option>
+                            </select>
+                            <span
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400"
+                                >▼</span
+                            >
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            class="mb-2 block text-xs font-semibold tracking-wider text-slate-300 uppercase"
+                            >Check-in Date</label
+                        >
+                        <input
+                            type="date"
+                            class="w-full rounded-lg border border-white/10 bg-white/10 px-4 py-2.5 text-sm text-white transition-all duration-200 focus:border-[#c9a84c] focus:bg-white/20 focus:outline-none"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-lg bg-[#c9a84c] py-3 text-sm font-semibold text-[#1a2744] shadow-md shadow-[#c9a84c]/20 transition-all duration-200 hover:bg-[#dab867] hover:shadow-lg hover:shadow-[#c9a84c]/30"
+                    >
+                        <span>Check Availability</span>
+                        <ArrowRight class="size-4" />
+                    </button>
+                </form>
+            </div>
+        </div>
 
         <!-- Feature Cards -->
         <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">

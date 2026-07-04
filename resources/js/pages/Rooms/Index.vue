@@ -77,21 +77,36 @@ watch(
     <Head title="Rooms · Aurelia Stay" />
 
     <GuestLayout>
-        <section class="border-b border-slate-200 bg-white">
+        <!-- Luxury Header Banner -->
+        <section class="relative overflow-hidden bg-[#1a2744] py-16 text-white">
             <div
-                class="animate-fade-up mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8"
-            >
+                aria-hidden="true"
+                class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80')] bg-cover bg-center opacity-15"
+            />
+            <div
+                aria-hidden="true"
+                class="absolute inset-0 bg-gradient-to-b from-[#1a2744]/30 to-[#1a2744]"
+            />
+            <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <p
-                    class="text-xs font-semibold tracking-widest text-[#c9a84c] uppercase"
+                    class="animate-fade-up text-xs font-semibold tracking-[0.4em] text-[#c9a84c] uppercase"
                 >
                     Our rooms
                 </p>
-                <h1 class="mt-2 font-serif text-3xl text-[#1a2744] md:text-4xl">
-                    Find your perfect retreat
+                <h1
+                    class="animate-fade-up-delayed-1 mt-3 font-serif text-4xl text-white md:text-5xl"
+                >
+                    Find your perfect
+                    <span class="font-normal text-[#c9a84c] italic"
+                        >retreat</span
+                    >
                 </h1>
-                <p class="mt-3 max-w-2xl text-sm text-slate-500">
-                    Browse the full collection. Refine by type, price, capacity,
-                    and more.
+                <p
+                    class="animate-fade-up-delayed-2 mt-4 max-w-2xl text-sm leading-relaxed text-slate-300"
+                >
+                    Immerse yourself in our collection of thoughtfully curated
+                    spaces, designed to be your private sanctuary of comfort and
+                    quiet luxury.
                 </p>
             </div>
         </section>
@@ -100,114 +115,122 @@ watch(
             class="animate-fade-up-delayed-1 mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[280px_1fr] lg:px-8"
         >
             <!-- Filters sidebar -->
-            <aside class="space-y-6">
-                <div class="rounded-xl border border-slate-200 bg-white p-5">
+            <aside class="space-y-6 self-start lg:sticky lg:top-8">
+                <div
+                    class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:shadow-md"
+                >
                     <div
-                        class="flex items-center gap-2 text-sm font-medium text-[#1a2744]"
+                        class="flex items-center gap-2 text-sm font-semibold text-[#1a2744]"
                     >
                         <SlidersHorizontal class="size-4" />
-                        Filters
+                        Refine Search
                     </div>
 
-                    <form @submit.prevent="apply" class="mt-5 space-y-5">
+                    <form @submit.prevent="apply" class="mt-6 space-y-5">
                         <label class="block">
                             <span
-                                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                class="text-xs font-semibold tracking-wider text-slate-400 uppercase"
                             >
-                                Search
+                                Search Keywords
                             </span>
-                            <div class="relative mt-1">
+                            <div class="relative mt-2">
                                 <Search
-                                    class="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-slate-400"
+                                    class="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-slate-400"
                                 />
                                 <input
                                     v-model="local.q"
                                     type="search"
-                                    placeholder="Suite name…"
-                                    class="w-full rounded-md border border-slate-200 py-2 pr-3 pl-9 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
+                                    placeholder="Suite name or keyword..."
+                                    class="w-full rounded-lg border border-slate-200 bg-slate-50/50 py-2.5 pr-3 pl-10 text-sm text-slate-800 placeholder-slate-400 transition-all duration-200 focus:border-[#c9a84c] focus:bg-white focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 />
                             </div>
                         </label>
 
                         <label class="block">
                             <span
-                                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                class="text-xs font-semibold tracking-wider text-slate-400 uppercase"
                             >
-                                Room type
+                                Room Collection
                             </span>
-                            <select
-                                v-model="local.type"
-                                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
-                            >
-                                <option value="">Any</option>
-                                <option
-                                    v-for="opt in roomTypes"
-                                    :key="opt.value"
-                                    :value="opt.value"
+                            <div class="relative mt-2">
+                                <select
+                                    v-model="local.type"
+                                    class="w-full appearance-none rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-all duration-200 focus:border-[#c9a84c] focus:bg-white focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 >
-                                    {{ opt.label }}
-                                </option>
-                            </select>
+                                    <option value="">All Collections</option>
+                                    <option
+                                        v-for="opt in roomTypes"
+                                        :key="opt.value"
+                                        :value="opt.value"
+                                    >
+                                        {{ opt.label }}
+                                    </option>
+                                </select>
+                                <span
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-[10px] text-slate-400"
+                                    >▼</span
+                                >
+                            </div>
                         </label>
 
                         <div class="grid grid-cols-2 gap-3">
                             <label class="block">
                                 <span
-                                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                    class="text-xs font-semibold tracking-wider text-slate-400 uppercase"
                                 >
-                                    Min $
+                                    Min Price
                                 </span>
                                 <input
                                     v-model="local.min_price"
                                     type="number"
                                     min="0"
-                                    placeholder="0"
-                                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
+                                    placeholder="$ Min"
+                                    class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-all duration-200 focus:border-[#c9a84c] focus:bg-white focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 />
                             </label>
                             <label class="block">
                                 <span
-                                    class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                    class="text-xs font-semibold tracking-wider text-slate-400 uppercase"
                                 >
-                                    Max $
+                                    Max Price
                                 </span>
                                 <input
                                     v-model="local.max_price"
                                     type="number"
                                     min="0"
-                                    placeholder="1000"
-                                    class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
+                                    placeholder="$ Max"
+                                    class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-all duration-200 focus:border-[#c9a84c] focus:bg-white focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                                 />
                             </label>
                         </div>
 
                         <label class="block">
                             <span
-                                class="text-xs font-medium tracking-wider text-slate-500 uppercase"
+                                class="text-xs font-semibold tracking-wider text-slate-400 uppercase"
                             >
-                                Min capacity
+                                Minimum Capacity
                             </span>
                             <input
                                 v-model="local.capacity"
                                 type="number"
                                 min="1"
                                 max="10"
-                                placeholder="2"
-                                class="mt-1 w-full rounded-md border border-slate-200 px-3 py-2 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
+                                placeholder="Number of guests"
+                                class="mt-2 w-full rounded-lg border border-slate-200 bg-slate-50/50 px-3 py-2.5 text-sm text-slate-800 transition-all duration-200 focus:border-[#c9a84c] focus:bg-white focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
                             />
                         </label>
 
-                        <div class="flex gap-2">
+                        <div class="flex gap-3 pt-2">
                             <button
                                 type="submit"
-                                class="flex-1 rounded-md bg-[#1a2744] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#243558]"
+                                class="flex-1 cursor-pointer rounded-lg bg-[#1a2744] px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1a2744]/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#243558] hover:shadow-lg"
                             >
                                 Apply
                             </button>
                             <button
                                 type="button"
                                 @click="reset"
-                                class="rounded-md border border-slate-200 px-4 py-2 text-sm text-slate-600 transition hover:border-slate-300 hover:text-slate-800"
+                                class="cursor-pointer rounded-lg border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-all duration-200 hover:bg-slate-50 hover:text-slate-800"
                             >
                                 Reset
                             </button>
@@ -218,31 +241,40 @@ watch(
 
             <!-- Results -->
             <div>
-                <div class="flex flex-wrap items-center justify-between gap-3">
+                <div
+                    class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5"
+                >
                     <p class="text-sm text-slate-500">
-                        <span class="font-medium text-[#1a2744]">{{
+                        Showing
+                        <span class="font-semibold text-[#1a2744]">{{
                             rooms.meta.total
                         }}</span>
-                        rooms available
+                        curated rooms
                     </p>
                     <label
-                        class="flex items-center gap-2 text-sm text-slate-500"
+                        class="flex items-center gap-2.5 text-sm text-slate-500"
                     >
-                        Sort:
-                        <select
-                            v-model="local.sort"
-                            @change="apply"
-                            class="rounded-md border border-slate-200 px-2 py-1.5 text-sm focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
-                        >
-                            <option value="newest">Newest</option>
-                            <option value="price_asc">
-                                Price (low → high)
-                            </option>
-                            <option value="price_desc">
-                                Price (high → low)
-                            </option>
-                            <option value="rating">Top rated</option>
-                        </select>
+                        Sort by:
+                        <div class="relative">
+                            <select
+                                v-model="local.sort"
+                                @change="apply"
+                                class="cursor-pointer appearance-none rounded-lg border border-slate-200 bg-white px-3 py-2 pr-8 text-sm transition-all duration-200 focus:border-[#c9a84c] focus:ring-1 focus:ring-[#c9a84c] focus:outline-none"
+                            >
+                                <option value="newest">Newest Additions</option>
+                                <option value="price_asc">
+                                    Price: Low to High
+                                </option>
+                                <option value="price_desc">
+                                    Price: High to Low
+                                </option>
+                                <option value="rating">Guest Rating</option>
+                            </select>
+                            <span
+                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2.5 text-[10px] text-slate-400"
+                                >▼</span
+                            >
+                        </div>
                     </label>
                 </div>
 
@@ -263,25 +295,26 @@ watch(
                     v-else
                     class="animate-fade-up mt-12 rounded-2xl border border-dashed border-[#c9a84c]/40 bg-gradient-to-br from-[#fdf8ec] to-white p-12 text-center"
                 >
-                    <p class="font-serif text-xl text-[#1a2744]">
-                        No rooms match those filters.
+                    <p class="font-serif text-2xl text-[#1a2744]">
+                        No matching sanctuaries found
                     </p>
                     <p class="mt-2 text-sm text-slate-500">
-                        Try widening your range or clearing some criteria.
+                        Try widening your price range or selecting a different
+                        room type.
                     </p>
                     <button
                         type="button"
                         @click="reset"
-                        class="group mt-6 inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#1a2744] px-5 py-2.5 text-sm font-medium text-white shadow-md shadow-[#1a2744]/10 transition-colors duration-200 hover:bg-[#243558]"
+                        class="group mt-6 inline-flex cursor-pointer items-center gap-2 rounded-md bg-[#1a2744] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#1a2744]/10 transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#243558]"
                     >
-                        Reset filters
+                        Clear all filters
                     </button>
                 </div>
 
                 <!-- Pagination -->
                 <nav
                     v-if="rooms.meta.last_page > 1"
-                    class="mt-10 flex flex-wrap items-center justify-center gap-1"
+                    class="mt-12 flex flex-wrap items-center justify-center gap-2"
                 >
                     <template
                         v-for="link in rooms.meta.links"
@@ -293,17 +326,17 @@ watch(
                             v-html="link.label"
                             preserve-scroll
                             preserve-state
-                            class="min-w-[40px] rounded-md border border-slate-200 px-3 py-1.5 text-center text-sm transition hover:border-[#c9a84c] hover:text-[#c9a84c]"
+                            class="flex h-[42px] min-w-[42px] items-center justify-center rounded-full border border-slate-200 px-3 text-center text-sm font-semibold transition-all duration-200 hover:border-[#c9a84c] hover:text-[#c9a84c] hover:shadow-sm"
                             :class="
                                 link.active
-                                    ? 'border-[#1a2744] bg-[#1a2744] text-white hover:bg-[#1a2744] hover:text-white'
-                                    : 'text-slate-600'
+                                    ? 'border-[#1a2744] bg-[#1a2744] text-white hover:border-[#1a2744] hover:bg-[#1a2744] hover:text-white'
+                                    : 'bg-white text-slate-600'
                             "
                         />
                         <span
                             v-else
                             v-html="link.label"
-                            class="min-w-[40px] px-3 py-1.5 text-center text-sm text-slate-300"
+                            class="flex h-[42px] min-w-[42px] items-center justify-center px-3 text-center text-sm text-slate-300"
                         />
                     </template>
                 </nav>
