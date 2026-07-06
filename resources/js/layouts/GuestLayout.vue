@@ -15,7 +15,7 @@ const isAdmin = computed(() => user.value?.role === 'admin');
         class="flex min-h-screen flex-col bg-[#fdfbf6] text-slate-900 antialiased"
     >
         <header
-            class="sticky top-0 z-40 border-b border-white/10 bg-[#1a2744]/95 text-white backdrop-blur supports-[backdrop-filter]:bg-[#1a2744]/80"
+            class="sticky top-0 z-50 border-b border-white/10 bg-[#1a2744]/95 text-white backdrop-blur supports-[backdrop-filter]:bg-[#1a2744]/80"
         >
             <div
                 class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
@@ -116,7 +116,7 @@ const isAdmin = computed(() => user.value?.role === 'admin');
         </main>
 
         <footer
-            class="mt-24 border-t border-slate-200 bg-[#1a2744] text-slate-300"
+            class="pt-24 bg-[#1a2744] text-slate-300"
         >
             <div
                 class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8"
