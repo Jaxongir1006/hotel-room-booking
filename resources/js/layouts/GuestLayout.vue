@@ -115,9 +115,7 @@ const isAdmin = computed(() => user.value?.role === 'admin');
             <slot />
         </main>
 
-        <footer
-            class="pt-24 bg-[#1a2744] text-slate-300"
-        >
+        <footer class="bg-[#1a2744] pt-24 text-slate-300">
             <div
                 class="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-4 lg:px-8"
             >
